@@ -20,9 +20,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 //!Beállítások
-const ip = '127.0.0.1';
 const port = process.env.PORT || 8080;
-//? const port = 3000 
 
 //!Session beállítása:
 app.use(
@@ -58,11 +56,6 @@ app.use('/', router);
 app.listen(port, () => {
     console.log('Szerver elérhetősége: ' + port);
 });
-//!Amikor local-ba akarsz dolgozni
-// app.listen(port, ip, () => {
-//     console.log('Szerver elérhetősége: ' + ip + ':' + port);
-// });
-
 //?Szerver futtatása terminalból: npm run start (Ehhez kell a következő: npm install nodemon --save-dev)
 //?Szerver leállítása (MacBook és Windows): Control + C
 //?Terminal ablak tartalmának törlése (MacBook): Command + K
