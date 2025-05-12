@@ -53,8 +53,10 @@ app.get('/api/selectall', (request, response) => {
 //!Szerver futtatása
 app.use(express.static('public')); //?public mappa tartalmának betöltése az oldal működéséhez
 app.use('/', router);
-app.listen(process.env.PORT, () => {
-    console.log('Szerver elérhetősége: ' + ip + ':' + port);
+
+const GooglePort = process.env.PORT || 8080;
+app.listen(GooglePort, () => {
+    console.log('Szerver elérhetősége: ' + GooglePort);
 });
 //!Amikor local-ba akarsz dolgozni
 // app.listen(port, ip, () => {
