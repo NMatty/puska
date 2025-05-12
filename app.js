@@ -21,7 +21,8 @@ const upload = multer({ storage: storage });
 
 //!Beállítások
 const ip = '127.0.0.1';
-const port = 3000;
+const port = process.env.PORT || 8080;
+//? const port = 3000 
 
 //!Session beállítása:
 app.use(
@@ -54,9 +55,8 @@ app.get('/api/selectall', (request, response) => {
 app.use(express.static('public')); //?public mappa tartalmának betöltése az oldal működéséhez
 app.use('/', router);
 
-const GooglePort = process.env.PORT || 8080;
-app.listen(GooglePort, () => {
-    console.log('Szerver elérhetősége: ' + GooglePort);
+app.listen(port, () => {
+    console.log('Szerver elérhetősége: ' + port);
 });
 //!Amikor local-ba akarsz dolgozni
 // app.listen(port, ip, () => {
