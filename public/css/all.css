@@ -1,0 +1,87 @@
+body {
+    background-color: rgb(30,31,53);
+}
+
+#main {
+    display: flex;
+    margin-top: 100px;
+}
+
+.vertical-scroll-nav {
+    height: 300px; /* rögzített magasság */
+    overflow-y: auto; /* függőleges görgetés */
+    width: 200px; /* szélesség */
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    overflow: scroll;
+    scrollbar-color: gray transparent;
+    scrollbar-width: thin;
+}
+
+.vertical-scroll-nav a {
+    display: block;
+    padding: 10px;
+    margin: 5px 0;
+    background: transparent;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+}
+
+.vertical-scroll-nav a:hover {
+    background: #e0e0e0;
+    color: black;
+}
+
+/* From Uiverse.io by WhiteNervosa */ 
+button {
+  font-size: 18px;
+  color: #e1e1e1;
+  font-family: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  text-transform: uppercase;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+}
+
+button:focus,
+button:hover {
+  color: #fff;
+}
+
+button:focus:after,
+button:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+button:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}
+
+.copy-btn {
+    background-color: transparent;
+    color: black;
+}
+
+.copy-btn:focus,
+.copy-btn:hover {
+  color: black;
+  border: black;
+}
