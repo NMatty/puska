@@ -35,6 +35,9 @@ body {
     overflow: scroll;
     scrollbar-color: gray transparent;
     scrollbar-width: thin;
+    left: 150px;
+    top: 200px;
+    position: fixed;
 }
 
 .vertical-scroll-nav a {
@@ -52,6 +55,12 @@ body {
     color: black;
 }
 
+.content {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: left;
+}
+
 button {
   font-size: 18px;
   color: #e1e1e1;
@@ -65,7 +74,7 @@ button {
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: color;
-  width: 200px;
+  width: fit-content;
   text-align: left;
 }
 
@@ -94,6 +103,11 @@ button:after {
   transition-property: width, left;
 }
 
+.szovegek {
+    color:white;
+    white-space: pre-wrap;
+}
+
 .copy-btn {
     background-color: transparent;
     color: black;
@@ -108,4 +122,28 @@ button:after {
 
 .collapseBtn {
     margin-bottom: 20px;
+}
+
+@media (max-width: 1200px) {
+    .vertical-scroll-nav {
+        left: 50px;
+    }
+}
+
+@media (max-width: 825px) {
+    #main {
+        flex-direction: column;
+    }
+
+    .scrollable {
+        margin: auto auto 100px auto;
+    }
+
+    .content {
+        margin: auto;
+    }
+
+    .vertical-scroll-nav {
+        position: static;
+    }
 }

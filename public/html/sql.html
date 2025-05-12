@@ -33,17 +33,18 @@
         <div id="main">
             <div class="col-4">
                 <div class="vertical-scroll-nav mx-auto">
-                    <a href="#">Kezdőlap</a>
+                    <a href="#responsivity">Reszponzivítás</a>
+                    <a href="#navbar">Navbar</a>
                 </div>
             </div>
 
-             <div class="col-8">
-                <button data-bs-toggle="collapse" data-bs-target="#responsivity">
+            <div class="col-8 content">
+                <button data-bs-toggle="collapse" data-bs-target="#responsivity" class="collapseBtn">
                     Reszponzivítás
                 </button>
 
-                <div class="collapse mt-2 pe-5" id="responsivity">
-                        <pre class="szovegek" style="color:white;white-space: pre;">
+                <div class="collapse mt-2 mb-5 pe-5" id="responsivity">
+                        <pre class="szovegek">
 A Bootstrap 5 rácsrendszere hat osztályt tartalmaz:
 
 .col- (extra kicsi eszközök - képernyőszélesség 576px-nél kisebb)
@@ -57,12 +58,66 @@ A Bootstrap 5 rácsrendszere hat osztályt tartalmaz:
                         <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('responsivityContent')">
                             Másolás
                         </button>
-                        <pre class="bg-light p-3 rounded" id="responsivityContent"><code class="language-html">&lt;div class="container"&gt;
-    &lt;div class="row"&gt;
-        &lt;div class="col"&gt;Oszlop 1&lt;/div&gt;
-        &lt;div class="col"&gt;Oszlop 2&lt;/div&gt;
-    &lt;/div&gt;
+                        <pre class="bg-light p-3 rounded" id="responsivityContent"><code class="language-html">&lt;!-- Szabályozd az oszlopok szélességét és azt, hogy hogyan jelenjenek meg különböző eszközökön --&gt;
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Vagy csak hagyd, hogy a Bootstrap automatikusan beállítsa --&gt;
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;col&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;col&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <button data-bs-toggle="collapse" data-bs-target="#navbar" class="collapseBtn">
+                    Navbar
+                </button>
+
+
+                <div class="collapse mt-2 mb-5 pe-5" id="navbar">
+                        <pre class="szovegek">
+Hogyan és mit módosíthatsz a navbarban: 
+    - .navbar-expand-xxl|xl|lg|md|sm --> reszponzivításért felelős
+    - .navbar-expand-* --> ha eltávolítod ezt a részt, vertikális lesz a sáv
+    - .justify-content-center - középre állítod a tartalmát
+    - .bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger, .bg-secondary, .bg-dark and .bg-light --> ez módosítja a navbar színét
+    - .navbar-dark (fehér szöveg), .navbar-light(fekete szöveg)
+    - .navbar-brand - lógóhoz (a képet autmatikusan körré formálja)
+    - active (nav-link után) -  kiemeli az adott linket
+    - disabled - inaktívvá teszi a linket
+                        </pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('navbarContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="navbarContent"><code class="language-html">&lt;nav class=&quot;navbar navbar-expand-sm bg-light navbar-light&quot;&gt;
+    &lt;div class=&quot;container-fluid&quot;&gt;
+        &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Logo&lt;/a&gt;
+        &lt;ul class=&quot;navbar-nav&quot;&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link disabled&quot; href=&quot;#&quot;&gt;Disabled&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
                     </div>
                 </div>
             </div>
