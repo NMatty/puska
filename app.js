@@ -53,9 +53,13 @@ app.get('/api/selectall', (request, response) => {
 //!Szerver futtatása
 app.use(express.static('public')); //?public mappa tartalmának betöltése az oldal működéséhez
 app.use('/', router);
-app.listen(port, ip, () => {
+app.listen(process.env.PORT, () => {
     console.log('Szerver elérhetősége: ' + ip + ':' + port);
 });
+//!Amikor local-ba akarsz dolgozni
+// app.listen(port, ip, () => {
+//     console.log('Szerver elérhetősége: ' + ip + ':' + port);
+// });
 
 //?Szerver futtatása terminalból: npm run start (Ehhez kell a következő: npm install nodemon --save-dev)
 //?Szerver leállítása (MacBook és Windows): Control + C
