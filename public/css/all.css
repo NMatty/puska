@@ -1,5 +1,23 @@
+html {
+    overflow-y: scroll; 
+}
 body {
     background-color: rgb(30,31,53);
+    scrollbar-gutter: stable;
+    overflow: overlay;
+}
+
+::-webkit-scrollbar {
+  width: 13px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(33, 37, 41);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 #main {
@@ -8,9 +26,9 @@ body {
 }
 
 .vertical-scroll-nav {
-    height: 300px; /* rögzített magasság */
-    overflow-y: auto; /* függőleges görgetés */
-    width: 200px; /* szélesség */
+    height: 300px; 
+    overflow-y: auto; 
+    width: 200px; 
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 10px;
@@ -34,7 +52,6 @@ body {
     color: black;
 }
 
-/* From Uiverse.io by WhiteNervosa */ 
 button {
   font-size: 18px;
   color: #e1e1e1;
@@ -48,6 +65,8 @@ button {
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: color;
+  width: 200px;
+  text-align: left;
 }
 
 button:focus,
@@ -78,10 +97,15 @@ button:after {
 .copy-btn {
     background-color: transparent;
     color: black;
+    width: 100px;
 }
 
 .copy-btn:focus,
 .copy-btn:hover {
   color: black;
   border: black;
+}
+
+.collapseBtn {
+    margin-bottom: 20px;
 }
