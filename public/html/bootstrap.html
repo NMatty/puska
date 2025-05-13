@@ -42,6 +42,13 @@
                     <a href="#responsivity">Reszponzivítás</a>
                     <a href="#navbar">Navbar</a>
                     <a href="#table">Table</a>
+                    <a href="#colors">Colors</a>
+                    <a href="#mapa">Margin, padding</a>
+                    <a href="#modal">Modal</a>
+                    <a href="#cards">Cards</a>
+                    <a href="#collapse">Collapse</a>
+                    <a href="#carousel">Carousel</a>
+                    <a href="#alerts">Alerts</a>
                 </div>
             </div>
 
@@ -54,12 +61,12 @@
                         <pre class="szovegek">
 A Bootstrap 5 rácsrendszere hat osztályt tartalmaz:
 
-.col- (extra kicsi eszközök - képernyőszélesség 576px-nél kisebb)
-.col-sm- (kis eszközök - képernyőszélesség 576px vagy nagyobb)
-.col-md- (közepes eszközök - képernyőszélesség 768px vagy nagyobb)
-.col-lg- (nagy eszközök - képernyőszélesség 992px vagy nagyobb)
-.col-xl- (extra nagy eszközök - képernyőszélesség 1200px vagy nagyobb)
-.col-xxl- (dupla extra nagy eszközök - képernyőszélesség 1400px vagy nagyobb)
+col- (extra kicsi eszközök - képernyőszélesség 576px-nél kisebb)
+col-sm- (kis eszközök - képernyőszélesség 576px vagy nagyobb)
+col-md- (közepes eszközök - képernyőszélesség 768px vagy nagyobb)
+col-lg- (nagy eszközök - képernyőszélesség 992px vagy nagyobb)
+col-xl- (extra nagy eszközök - képernyőszélesség 1200px vagy nagyobb)
+col-xxl- (dupla extra nagy eszközök - képernyőszélesség 1400px vagy nagyobb)
                         </pre>
                     <div class="card card-body position-relative">
                         <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('responsivityContent')">
@@ -94,12 +101,13 @@ A Bootstrap 5 rácsrendszere hat osztályt tartalmaz:
                 <div class="collapse mt-2 mb-5 pe-5" id="navbar">
                         <pre class="szovegek">
 Hogyan és mit módosíthatsz a navbarban: 
-    - .navbar-expand-xxl|xl|lg|md|sm --> reszponzivításért felelős
-    - .navbar-expand-* --> ha eltávolítod ezt a részt, vertikális lesz a sáv
-    - .justify-content-center - középre állítod a tartalmát
-    - .bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger, .bg-secondary, .bg-dark and .bg-light --> ez módosítja a navbar színét
-    - .navbar-dark (fehér szöveg), .navbar-light(fekete szöveg)
-    - .navbar-brand - lógóhoz (a képet autmatikusan körré formálja)
+    - navbar-expand-xxl|xl|lg|md|sm --> reszponzivításért felelős
+    - navbar-expand-* --> ha eltávolítod ezt a részt, vertikális lesz a sáv
+    - justify-content-center - középre állítod a tartalmát
+    - bg-primary, bg-success, bg-info, bg-warning, bg-danger, bg-secondary, bg-dark and bg-light --> ez módosítja a navbar színét
+    - navbar-dark (fehér szöveg), .navbar-light(fekete szöveg)
+    - navbar-brand - lógóhoz (a képet autmatikusan körré formálja)
+    - fixed-top - ha legörgetsz az oldal tetején marad a navbar
     - active (nav-link után) -  kiemeli az adott linket
     - disabled - inaktívvá teszi a linket
                         </pre>
@@ -137,45 +145,366 @@ Hogyan és mit módosíthatsz a navbarban:
 
                 <div class="collapse mt-2 mb-5 pe-5" id="table">
                         <pre class="szovegek">
-Hogyan és mit módosíthatsz a navbarban: 
-    - .navbar-expand-xxl|xl|lg|md|sm --> reszponzivításért felelős
-    - .navbar-expand-* --> ha eltávolítod ezt a részt, vertikális lesz a sáv
-    - .justify-content-center - középre állítod a tartalmát
-    - .bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger, .bg-secondary, .bg-dark and .bg-light --> ez módosítja a navbar színét
-    - .navbar-dark (fehér szöveg), .navbar-light(fekete szöveg)
-    - .navbar-brand - lógóhoz (a képet autmatikusan körré formálja)
-    - active (nav-link után) -  kiemeli az adott linket
-    - disabled - inaktívvá teszi a linket
+Hogyan és mit módosíthatsz a táblában: 
+    - table - reszponzívvá teszi és minimálisan szépíti 
+    - table-striped - a sorokat "zebrásítja"
+    - table-bordered - minden oldalára szegélyt teszt
+    - table-borderless - eltávolít minden szegélyt
+    - table-hover - amelyik sor fölé viszed az egeret, beszürkül amíg afelett tartod
+    - table-dark - sötét hátteret ad a táblának
+    - tr class-ba kell írni: table-primary/table-success/table-danger/table-info/table-warning/table-active/table-secondary/table-light/table-dark - beszínezi az adott sort
                         </pre>
                     <div class="card card-body position-relative">
                         <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('tableContent')">
                             Másolás
                         </button>
-                        <pre class="bg-light p-3 rounded" id="tableContent"><code class="language-html">&lt;nav class=&quot;navbar navbar-expand-sm bg-light navbar-light&quot;&gt;
-    &lt;div class=&quot;container-fluid&quot;&gt;
-        &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Logo&lt;/a&gt;
-        &lt;ul class=&quot;navbar-nav&quot;&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link disabled&quot; href=&quot;#&quot;&gt;Disabled&lt;/a&gt;
-            &lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-&lt;/nav&gt;</code></pre>
+                        <pre class="bg-light p-3 rounded" id="tableContent"><code class="language-html">&lt;table class=&quot;table table-dark table-striped&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Firstname&lt;/th&gt;
+            &lt;th&gt;Lastname&lt;/th&gt;
+            &lt;th&gt;Email&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;John&lt;/td&gt;
+            &lt;td&gt;Doe&lt;/td&gt;
+            &lt;td&gt;john@example.com&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Mary&lt;/td&gt;
+            &lt;td&gt;Moe&lt;/td&gt;
+            &lt;td&gt;mary@example.com&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;July&lt;/td&gt;
+            &lt;td&gt;Dooley&lt;/td&gt;
+            &lt;td&gt;july@example.com&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
                     </div>
                 </div>
-            </div>
-        </div>
 
         
+                <button data-bs-toggle="collapse" data-bs-target="#colors" class="collapseBtn">
+                    Colors
+                </button>
+
+
+                <div class="collapse mt-2 mb-5 pe-5" id="colors">
+                        <pre class="szovegek">
+Színek: text & background:
+Text Colors:
+    - text-muted, text-primary, text-succes, text-info, text-warning, text-danger, text-secondary, text-white, text-dark, text-body, text-light
+    - text-black-50/text-white-50 - 50%os átlátszó fekete/fehér háttér a szövegnek
+
+Background Colors:
+    - bg-primary, bg-success, bg-info, bg-warning, bg-danger, bg-secondary, bg-dark, bg-light
+    - text-bg-primary, text-bg-succes ...
+                        </pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('colorsContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="colorsContent"><code class="language-html"><!--Text példák-->
+&lt;p class=&quot;text-muted&quot;&gt;This text is muted.&lt;/p&gt;
+&lt;p class=&quot;text-primary&quot;&gt;This text is important.&lt;/p&gt;
+&lt;p class=&quot;text-white-50 bg-dark&quot;&gt;White text with 50% opacity on black background&lt;/p&gt;
+
+<!--Background példák-->
+&lt;div class=&quot;bg-primary p-3&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;bg-success p-3&quot;&gt;&lt;/div&gt;
+&lt;p class=&quot;text-bg-primary&quot;&gt;This text is important.&lt;/p&gt;
+&lt;p class=&quot;text-bg-success&quot;&gt;This text indicates success.&lt;/p&gt;
+</code></pre>
+                    </div>
+                </div>
+
+                
+                <button data-bs-toggle="collapse" data-bs-target="#mapa" class="collapseBtn">
+                    Margin, padding
+                </button>
+
+
+                <div class="collapse mt-2 mb-5 pe-5" id="mapa">
+                        <pre class="szovegek">
+Tulajdonság:
+
+m - margó
+p - padding
+
+Oldal:
+
+t - top
+b - bottom
+s - start/left
+e - end/right 
+x - left&right
+y - top&bottom
+
+Méret:
+0-5 vagy auto
+                        </pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('mapaContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="mapaContent"><code class="language-html">&lt;div class=&quot;pt-5&quot; style=&quot;width: 200px;&quot;&gt;
+    Belső felső marg&oacute; 5 m&eacute;rettel t&aacute;volabb van
+&lt;/div&gt;
+
+&lt;div class=&quot;mx-auto&quot; style=&quot;width: 200px;&quot;&gt;
+    K&ouml;z&eacute;pre igaz&iacute;tott elem
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </div>
+
+                <button data-bs-toggle="collapse" data-bs-target="#modal" class="collapseBtn">
+                    Modal
+                </button>
+
+
+                <div class="collapse mt-2 mb-5 pe-5" id="modal">
+                        <pre class="szovegek">
+Mit addhatunk még hozzá:
+    - fade - írjuk a modal mellé a legelső div class-ban, így tudunk animációt adni hozzá
+    - modal-sm/lg/xl vagy modal-fullscreen - írjuk a modal-dialog mellé, megváltozatja a modal méretét
+    - modal-dialog-centered - szintén a dialog mellé, ezzel állítjuk középre
+    - modal-dialog-scrollable - dialog mellé, ha csak a modal-on belül szeretnénk görgetőt
+
+                        </pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('modalContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="modalContent"><code class="language-html">&lt;!-- Button to Open the Modal --&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-bs-toggle=&quot;modal&quot; data-bs-target=&quot;#myModal&quot;&gt;
+    Open modal
+&lt;/button&gt;
+
+&lt;!-- The Modal --&gt;
+&lt;div class=&quot;modal&quot; id=&quot;myModal&quot;&gt;
+    &lt;div class=&quot;modal-dialog&quot;&gt;
+        &lt;div class=&quot;modal-content&quot;&gt;
+
+        &lt;!-- Modal Header --&gt;
+        &lt;div class=&quot;modal-header&quot;&gt;
+            &lt;h4 class=&quot;modal-title&quot;&gt;Modal Heading&lt;/h4&gt;
+            &lt;button type=&quot;button&quot; class=&quot;btn-close&quot; data-bs-dismiss=&quot;modal&quot;&gt;&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Modal body --&gt;
+        &lt;div class=&quot;modal-body&quot;&gt;
+            Modal body..
+        &lt;/div&gt;
+
+        &lt;!-- Modal footer --&gt;
+        &lt;div class=&quot;modal-footer&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;btn btn-danger&quot; data-bs-dismiss=&quot;modal&quot;&gt;Close&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <button data-bs-toggle="collapse" data-bs-target="#cards" class="collapseBtn">
+                    Cards
+                </button>
+
+
+                <div class="collapse mt-2 mb-5 pe-5" id="cards">
+                        <pre class="szovegek">
+Mit addhatunk még hozzá:
+    - <a href="#colors" style="color: white;;"><u>színek</u></a> - card osztály mellé beírhatunk valamilyen színt pl: bg-primary
+    - card-img-top/bottom - felül vagy alul helyezkedjen el a kép
+    - card-img-overlay - card-body helyére, ha a szöveg a kép fölött legyen
+
+                        </pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('cardsContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="cardsContent"><code class="language-html">&lt;div class=&quot;card&quot;&gt;
+    &lt;div class=&quot;card-header&quot;&gt;Header&lt;/div&gt;
+    &lt;div class=&quot;card-body&quot;&gt;Content&lt;/div&gt;
+    &lt;div class=&quot;card-footer&quot;&gt;Footer&lt;/div&gt;
+&lt;/div&gt;
+                            
+&lt;div class=&quot;card&quot; style=&quot;width:400px&quot;&gt;
+    &lt;img class=&quot;card-img-top&quot; src=&quot;../bootstrap4/img_avatar1.png&quot; alt=&quot;Card image&quot; style=&quot;width:100%&quot;&gt;
+    &lt;div class=&quot;card-body&quot;&gt;
+        &lt;h4 class=&quot;card-title&quot;&gt;John Doe&lt;/h4&gt;
+        &lt;p class=&quot;card-text&quot;&gt;Some example text some example text. John Doe is an architect and engineer&lt;/p&gt;
+        &lt;a href=&quot;#&quot; class=&quot;btn btn-primary&quot;&gt;See Profile&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <button data-bs-toggle="collapse" data-bs-target="#collapse" class="collapseBtn">
+                    Collapse
+                </button>
+
+
+                <div class="collapse mt-2 mb-5 pe-5" id="collapse">
+                        <pre class="szovegek">
+Mit addhatunk még hozzá:
+    - show - alapjáraton rejtve van, de ezzel feldejük automatikusan a tartalmát
+    - data-bs-parent = "valami" - ha szeretnéd, hogy mindig csak egy collapse legyen nyitva, írd úgy mint a példában
+
+                        </pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('collapseContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="collapseContent"><code class="language-html">&lt;div id=&quot;accordion&quot;&gt;
+
+    &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-header&quot;&gt;
+            &lt;a class=&quot;btn&quot; data-bs-toggle=&quot;collapse&quot; href=&quot;#collapseOne&quot;&gt;
+                Collapsible Group Item #1
+            &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;collapseOne&quot; class=&quot;collapse show&quot; data-bs-parent=&quot;#accordion&quot;&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                Lorem ipsum..
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-header&quot;&gt;
+            &lt;a class=&quot;collapsed btn&quot; data-bs-toggle=&quot;collapse&quot; href=&quot;#collapseTwo&quot;&gt;
+                Collapsible Group Item #2
+            &lt;/a&gt;
+        &lt;/div&gt;
+            &lt;div id=&quot;collapseTwo&quot; class=&quot;collapse&quot; data-bs-parent=&quot;#accordion&quot;&gt;
+                &lt;div class=&quot;card-body&quot;&gt;
+                    Lorem ipsum..
+                &lt;/div&gt;
+            &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;card&quot;&gt;
+        &lt;div class=&quot;card-header&quot;&gt;
+            &lt;a class=&quot;collapsed btn&quot; data-bs-toggle=&quot;collapse&quot; href=&quot;#collapseThree&quot;&gt;
+                Collapsible Group Item #3
+            &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;collapseThree&quot; class=&quot;collapse&quot; data-bs-parent=&quot;#accordion&quot;&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                Lorem ipsum..
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <button data-bs-toggle="collapse" data-bs-target="#carousel" class="collapseBtn">
+                    Carousel
+                </button>
+
+
+                <div class="collapse mt-2 mb-5 pe-5" id="carousel">
+                        <pre class="szovegek">
+Így adhatsz hozzá címet és tartalmat:
+
+&lt;div class=&quot;carousel-item&quot;&gt;
+    &lt;img src=&quot;la.jpg&quot; alt=&quot;Los Angeles&quot;&gt;
+    &lt;div class=&quot;carousel-caption&quot;&gt;
+        &lt;h3&gt;Los Angeles&lt;/h3&gt;
+        &lt;p&gt;We had such a great time in LA!&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+                        </pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('carouselContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="carouselContent"><code class="language-html">&lt;!-- Carousel --&gt;
+&lt;div id=&quot;demo&quot; class=&quot;carousel slide&quot; data-bs-ride=&quot;carousel&quot;&gt;
+
+    &lt;!-- Indicators/dots --&gt;
+    &lt;div class=&quot;carousel-indicators&quot;&gt;
+        &lt;button type=&quot;button&quot; data-bs-target=&quot;#demo&quot; data-bs-slide-to=&quot;0&quot; class=&quot;active&quot;&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-bs-target=&quot;#demo&quot; data-bs-slide-to=&quot;1&quot;&gt;&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-bs-target=&quot;#demo&quot; data-bs-slide-to=&quot;2&quot;&gt;&lt;/button&gt;
+    &lt;/div&gt;
+
+  &lt;!-- The slideshow/carousel --&gt;
+  &lt;div class=&quot;carousel-inner&quot;&gt;
+        &lt;div class=&quot;carousel-item active&quot;&gt;
+            &lt;img src=&quot;la.jpg&quot; alt=&quot;Los Angeles&quot; class=&quot;d-block w-100&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;carousel-item&quot;&gt;
+            &lt;img src=&quot;chicago.jpg&quot; alt=&quot;Chicago&quot; class=&quot;d-block w-100&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;carousel-item&quot;&gt;
+            &lt;img src=&quot;ny.jpg&quot; alt=&quot;New York&quot; class=&quot;d-block w-100&quot;&gt;
+        &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Left and right controls/icons --&gt;
+  &lt;button class=&quot;carousel-control-prev&quot; type=&quot;button&quot; data-bs-target=&quot;#demo&quot; data-bs-slide=&quot;prev&quot;&gt;
+        &lt;span class=&quot;carousel-control-prev-icon&quot;&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class=&quot;carousel-control-next&quot; type=&quot;button&quot; data-bs-target=&quot;#demo&quot; data-bs-slide=&quot;next&quot;&gt;
+        &lt;span class=&quot;carousel-control-next-icon&quot;&gt;&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <button data-bs-toggle="collapse" data-bs-target="#alerts" class="collapseBtn">
+                    Alerts
+                </button>
+
+
+                <div class="collapse mt-2 mb-5 pe-5" id="alerts">
+                        <pre class="szovegek">
+Kontextus fajták: alert-success, alert-info, alert-warning, alert-danger, alert-primary, alert-secondary, alert-light, alert-dark
+Linkhez: alert-link
+Bezárható alert: 
+
+&lt;div class=&quot;alert alert-success alert-dismissible&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn-close&quot; data-bs-dismiss=&quot;alert&quot;&gt;&lt;/button&gt;
+    &lt;strong&gt;Success!&lt;/strong&gt; This alert box could indicate a successful or positive action.
+&lt;/div&gt;
+
+Animált bezárható alert:
+
+&lt;div class=&quot;alert alert-success alert-dismissible fade show&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn-close&quot; data-bs-dismiss=&quot;alert&quot;&gt;&lt;/button&gt;
+    &lt;strong&gt;Success!&lt;/strong&gt; This alert box could indicate a successful or positive action.
+&lt;/div&gt;
+
+                        </pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('alertsContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="alertsContent"><code class="language-html">&lt;div class=&quot;alert alert-success&quot;&gt;
+    &lt;strong&gt;Success!&lt;/strong&gt; Indicates a successful or positive action.
+&lt;/div&gt;
+
+&lt;div class=&quot;alert alert-success&quot;&gt;
+    &lt;strong&gt;Success!&lt;/strong&gt; You should &lt;a href=&quot;#&quot; class=&quot;alert-link&quot;&gt;read this message&lt;/a&gt;.
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+       
         <script>
             function copyCode(elementId) {
                 const codeElement = document.getElementById(elementId);
