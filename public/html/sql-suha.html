@@ -1,0 +1,205 @@
+<html lang="HU"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuhaSchools | Adatbázis</title>
+    <!--Bootstrap-->
+    <link rel="icon" href="../images/favicon.jpg">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="../prism/prism.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/tananyag.css">
+
+    <!-- Nav/Footer -->
+    <script src="/javascript/loadTemplate.js"></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+
+    <!-- #region main Nav -->
+    <nav id="navbar-placeholder"><div class="navbar fixed-top navbar-expand-lg">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav justify-content-center align-items-center mb-3 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="../html/bootstrap.html">Főoldal</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tananyagok
+                    </a>
+                    <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../html/boot-suha.html">Bootstrap</a></li>
+                            <li><a class="dropdown-item" href="../html/js-suha.html">JS</a></li>
+                            <li><a class="dropdown-item" href="../html/csharp-suha.html">C#</a></li>
+                            <li><a class="dropdown-item active" href="../html/sql-suha.html">Adatbázis</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <button class="btn text-light" href="#" id="signoutBtn">
+                        Kijelentkezés
+                        <i class="fas fa-sign-out-alt text-light"></i>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div></nav>
+
+    <!-- #endregion -->
+
+    <!-- #region Sidebar Nav (OffCanvas) -->
+    <div id="offcanvas-placeholder"><button class="side-nav-btn btn rounded-circle btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav">
+            <i class="fa-solid fa-list-ul"></i>
+        </button>
+
+        <div class="offcanvas side-nav offcanvas-start" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+            <div class="offcanvas-header">
+                <div>
+                    <div class="offcanvas-title">
+                        <h5 class="" id="offcanvasNavLabel">Tananyagok</h5>
+                        <p>Bootstrap</p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div>
+                    <input type="text" class="form-control" id="searchBar" placeholder="Tananyag keresése...">
+                </div>
+            </div>
+
+            <div class="offcanvas-body">
+                <ul class="nav flex-column" id="sideNavList" data-bs-spy="scroll" data-bs-target="#sideNavList">
+                    <!--                 
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Lesson 1</a>
+                </li>
+                 -->
+                <li class="nav-item"><a class="nav-link active" href="#lesson0">Adatbázis létrehozása</a></li><li class="nav-item"><a class="nav-link" href="#lesson1">Tábla létrehozása</a></li><li class="nav-item"><a class="nav-link" href="#lesson2">Tábla módosítása</a></li><li class="nav-item"><a class="nav-link" href="#lesson3">Nézettábla létrehozása</a></li><li class="nav-item"><a class="nav-link" href="#lesson4">PRIMARY KEY, FOREIGN KEY</a></li><li class="nav-item"><a class="nav-link" href="#lesson5">SQL Lekérdezés Lépések</a></li><li class="nav-item"><a class="nav-link" href="#lesson6">INSERT INTO</a></li><li class="nav-item"><a class="nav-link" href="#lesson7">UPDATE</a></li><li class="nav-item"><a class="nav-link" href="#lesson8">DELETE</a></li><li class="nav-item"><a class="nav-link" href="#lesson9">INNER JOIN</a></li><li class="nav-item"><a class="nav-link" href="#lesson10">Aggregáló függvények</a></li><li class="nav-item"><a class="nav-link" href="#lesson11">Lekérdezés szűrése szöveg típusú eredménnyel (Wildcard Characters)</a></li><li class="nav-item"><a class="nav-link" href="#lesson12">Data types</a></li></ul>
+            </div>
+        </div></div>
+    <!-- #endregion -->
+
+    <header class="container-fluid" id="database">
+        <div class="header-content">
+            <h1 class="display-1 fw-bold">Adatbázis</h1>
+            <p class="fst-italic">Amikor az évben csak 2 SQL órád volt...</p>
+        </div>
+    </header>
+
+    <main class="container d-flex flex-column flex-fill">
+        <!-- 
+        <section id="1">
+            <h2>Egy random kód</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore alias facilis optio, officia
+                saepe
+                itaque. Modi esse ea laudantium vero maxime assumenda provident repellat quod? Dolores quidem
+                necessitatibus eaque dicta?
+            </p>
+
+            <div class="code-block">
+                <pre class="line-numbers" data-line="2,5">
+                    <code class="language-javascript">
+                        function helloWorld(){console.log("Hello, Prism.js!");}helloWorld();
+
+                    </code>
+                </pre>
+            </div>
+        </section> -->
+
+
+    <section id="lesson0"><h2>Adatbázis létrehozása</h2><p>SQL query adatbázis létrehozására, ha még nem létezik és nyelv beállítása</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token keyword keyword-CREATE">CREATE</span> <span class="token keyword keyword-DATABASE">DATABASE</span> <span class="token keyword keyword-IF">IF</span> <span class="token operator">NOT</span> <span class="token keyword keyword-EXISTS">EXISTS</span> my_database
+<span class="token keyword keyword-CHARACTER">CHARACTER</span> <span class="token keyword keyword-SET">SET</span> utf8
+<span class="token keyword keyword-COLLATE">COLLATE</span> utf8_hungarian_ci<span class="token punctuation">;</span>
+<span class="token keyword keyword-USE">USE</span> my_database<span class="token punctuation">;</span>
+<span class="token comment">/* Ha ezt követően írod a Tábla létrehozását */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section><section id="lesson1"><h2>Tábla létrehozása</h2><p>SQL query 'versenyzo' tábla létrehozására, ha még nem létezik</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token keyword keyword-CREATE">CREATE</span> <span class="token keyword keyword-TABLE">TABLE</span> <span class="token keyword keyword-IF">IF</span> <span class="token operator">NOT</span> <span class="token keyword keyword-EXISTS">EXISTS</span> versenyzo
+<span class="token punctuation">(</span>
+    id <span class="token keyword keyword-INT">INT</span> <span class="token keyword keyword-PRIMARY">PRIMARY</span> <span class="token keyword keyword-KEY">KEY</span> <span class="token keyword keyword-AUTO_INCREMENT">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+    nev <span class="token keyword keyword-VARCHAR">VARCHAR</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    csapat <span class="token keyword keyword-VARCHAR">VARCHAR</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    nemzetiseg <span class="token keyword keyword-VARCHAR">VARCHAR</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    versenyszam <span class="token keyword keyword-INT">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    gyozelmek <span class="token keyword keyword-INT">INT</span> <span class="token keyword keyword-DEFAULT">DEFAULT</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    bajnoki_cimek <span class="token keyword keyword-INT">INT</span> <span class="token keyword keyword-DEFAULT">DEFAULT</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    szuletesi_ev <span class="token keyword keyword-INT">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    pontszam <span class="token keyword keyword-INT">INT</span> <span class="token keyword keyword-DEFAULT">DEFAULT</span> <span class="token number">0</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section><section id="lesson2"><h2>Tábla módosítása</h2><p>Ez a példa bemutatja, hogyan módosíthatunk táblákat SQL-ben az ALTER TABLE parancsok segítségével, például oszlopok hozzáadásával, törlésével és adattípusok módosításával.</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token keyword keyword-ALTER">ALTER</span> <span class="token keyword keyword-TABLE">TABLE</span> table_name
+<span class="token keyword keyword-ADD">ADD</span> column_name datatype<span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token comment">/* Új oszlop hozzáadása a táblázathoz */</span>
+<span class="token keyword keyword-ALTER">ALTER</span> <span class="token keyword keyword-TABLE">TABLE</span> table_name
+<span class="token keyword keyword-DROP">DROP</span> <span class="token keyword keyword-COLUMN">COLUMN</span> column_name<span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token comment">/* Egy oszlop törlése */</span>
+<span class="token keyword keyword-ALTER">ALTER</span> <span class="token keyword keyword-TABLE">TABLE</span> table_name
+<span class="token keyword keyword-MODIFY">MODIFY</span> <span class="token keyword keyword-COLUMN">COLUMN</span> column_name datatype<span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token comment">/* Egy oszlop adattípusának módosítása */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section><section id="lesson3"><h2>Nézettábla létrehozása</h2><p>Ez a példa bemutatja, hogyan lehet létrehozni egy nézetet (view), amely egy adott lekérdezést tartalmaz.</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token keyword keyword-CREATE">CREATE</span> <span class="token keyword keyword-VIEW">VIEW</span> view_name <span class="token keyword keyword-AS">AS</span>
+<span class="token keyword keyword-SELECT">SELECT</span> column1<span class="token punctuation">,</span> column2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword keyword-FROM">FROM</span> table_name
+<span class="token keyword keyword-WHERE">WHERE</span> mezoertek <span class="token operator">=</span> ?<span class="token punctuation">;</span>
+<span class="token comment">/*A CREATE VIEW egy új nézetet hoz létre, amely egy
+SELECT lekérdezést tartalmaz. A nézetek nem tárolják az adatokat, hanem dinamikusan lekérdezik 
+azokat a kapcsolódó táblákból.*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section><section id="lesson4"><h2>PRIMARY KEY, FOREIGN KEY</h2><p>Ez a példa bemutatja, hogyan hozzunk létre egy táblát, valamint használjuk a Primary Key és Foreign Key kulcsokat.</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token keyword keyword-CREATE">CREATE</span> <span class="token keyword keyword-TABLE">TABLE</span> Orders
+<span class="token punctuation">(</span>
+    OrderID <span class="token keyword keyword-int">int</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    OrderNumber <span class="token keyword keyword-int">int</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    PersonID <span class="token keyword keyword-int">int</span><span class="token punctuation">,</span>
+    <span class="token keyword keyword-PRIMARY">PRIMARY</span> <span class="token keyword keyword-KEY">KEY</span> <span class="token punctuation">(</span>OrderID<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword keyword-FOREIGN">FOREIGN</span> <span class="token keyword keyword-KEY">KEY</span> <span class="token punctuation">(</span>PersonID<span class="token punctuation">)</span> <span class="token keyword keyword-REFERENCES">REFERENCES</span> Persons<span class="token punctuation">(</span>PersonID<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/*Primary Key: Egyedileg azonosít minden sort a táblában*/</span> <span class="token comment">/*Foreign Key: Egy olyan kulcs ami egy 
+másik tábla Primary Key-re hivatkozik ezzel összekapcsolja a kettőt, így később egyszerűbb dolgozni 
+a táblákkal*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section><section id="lesson5"><h2>SQL Lekérdezés Lépések</h2><p>Ez a példa bemutatja, hogyan építsünk fel egy helyes SQL lekérdezést a megfelelő sorrend betartásával.</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token comment">/*Ha hosszabb SQL lekérdezést kell írnod, mindig tartsd a helyes sorrendet a lekérdezésben, hogy ne 
+legyen hibás*/</span> <span class="token number">1.</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token comment">/*Mit szeretnél lekérdezni*/</span> <span class="token number">2.</span>
+<span class="token keyword keyword-FROM">FROM</span> <span class="token comment">/*Melyik táblából*/</span> <span class="token number">3.</span>
+<span class="token keyword keyword-WHERE">WHERE</span> <span class="token comment">/*Milyen sorokra szűrj (feltétel)*/</span> <span class="token number">4.</span>
+<span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> <span class="token comment">/*Csoportosítás (pl. összegzéshez)*/</span> <span class="token number">5.</span>
+<span class="token keyword keyword-HAVING">HAVING</span> <span class="token comment">/*Szűrés a csoportosítás után*/</span> <span class="token number">6.</span>
+<span class="token keyword keyword-ORDER">ORDER</span> <span class="token keyword keyword-BY">BY</span> <span class="token comment">/*Rendezés (növekvő/csökkenő - DESC/ASC)*/</span> <span class="token number">7.</span>
+<span class="token keyword keyword-LIMIT">LIMIT</span> <span class="token comment">/*Hány sort adjon vissza*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section><section id="lesson6"><h2>INSERT INTO</h2><p>SQL query táblába történő adatfelvételhez</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token keyword keyword-INSERT">INSERT</span> <span class="token keyword keyword-INTO">INTO</span> versenyzo <span class="token punctuation">(</span>id<span class="token punctuation">,</span> nev<span class="token punctuation">,</span> csapat<span class="token punctuation">,</span> nemzetiseg<span class="token punctuation">,</span> versenyszam<span class="token punctuation">,</span> gyozelmek<span class="token punctuation">,</span> bajnoki_cimek<span class="token punctuation">,</span> 
+szuletesi_ev<span class="token punctuation">,</span> pontszam<span class="token punctuation">)</span>
+<span class="token keyword keyword-VALUES">VALUES</span> <span class="token punctuation">(</span>?<span class="token punctuation">,</span> ?<span class="token punctuation">,</span> ?<span class="token punctuation">,</span> ?<span class="token punctuation">,</span> ?<span class="token punctuation">,</span> ?<span class="token punctuation">,</span> ?<span class="token punctuation">,</span> ?<span class="token punctuation">,</span> ?<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/* Az értékeket te adod meg */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section><section id="lesson7"><h2>UPDATE</h2><p>SQL query adatok cserélésére</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token keyword keyword-UPDATE">UPDATE</span> versenyzo
+<span class="token keyword keyword-SET">SET</span> nev <span class="token operator">=</span> ?
+<span class="token keyword keyword-WHERE">WHERE</span> id <span class="token operator">=</span> ?<span class="token punctuation">;</span>
+<span class="token comment">/* Az értékeket te adod meg */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section><section id="lesson8"><h2>DELETE</h2><p>SQL query tábla sorának törlésére, adott tulajdonság alapján</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token keyword keyword-DELETE">DELETE</span> <span class="token keyword keyword-FROM">FROM</span> versenyzo
+<span class="token keyword keyword-WHERE">WHERE</span> id <span class="token operator">=</span> ?<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section><section id="lesson9"><h2>INNER JOIN</h2><p>Ez a példa bemutatja, hogyan kell két táblát összekapcsolni INNER JOIN használatával. A JOIN kapcsolatokat általában azonos oszlopok, például id-k alapján hozzák létre.</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> column_name<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token keyword keyword-FROM">FROM</span> table1
+<span class="token keyword keyword-INNER">INNER</span> <span class="token keyword keyword-JOIN">JOIN</span> table2
+<span class="token keyword keyword-ON">ON</span> table1<span class="token punctuation">.</span>column_name <span class="token operator">=</span> table2<span class="token punctuation">.</span>column_name<span class="token punctuation">;</span>
+<span class="token comment">/* Általában id-k használatával szokták ezt a
+JOIN-t megvalósítani */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section><section id="lesson10"><h2>Aggregáló függvények</h2><p>Ez a példa bemutatja az SQL aggregáló függvényeket, amelyek segítségével különböző műveleteket végezhetünk az adatainkon, mint például a minimum, maximum, összegzés, átlag számítás, és sorok száma.</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token function">MIN</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">/* Legkisebb értéket adja vissza a kiválasztott oszlophoz */</span> <span class="token function">MAX</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">/* Legnagyobb értéket adja 
+vissza a kiválasztott oszlophoz */</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">/* Sorok számát adja vissza egy halmaznak */</span> <span class="token function">SUM</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">/* 
+Összegez */</span> <span class="token function">AVG</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">/* Átlag számítást végez */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section><section id="lesson11"><h2>Lekérdezés szűrése szöveg típusú eredménnyel (Wildcard Characters)</h2><p>Ez a példa bemutatja, hogyan szűrhetünk szöveges típusú adatokat SQL lekérdezésben a LIKE operátor segítségével. A % jelzés bármilyen karakterek sorozatát jelenti, az _ pedig egyetlen karaktert. Az [] szögletes zárójelekben meghatározott karakterek közül lehet választani, míg a - jel egy tartományt jelöl.</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword keyword-FROM">FROM</span> tanarok
+<span class="token keyword keyword-WHERE">WHERE</span> keresztnev <span class="token operator">LIKE</span> <span class="token string">'%a%'</span><span class="token punctuation">;</span>
+<span class="token comment">/*Itt minden tanárt megkapunk akinek a keresztneveben van "a" betű*/</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword keyword-FROM">FROM</span> orszagok
+<span class="token keyword keyword-WHERE">WHERE</span> fovaros <span class="token operator">LIKE</span> <span class="token string">'_udapest'</span><span class="token punctuation">;</span>
+<span class="token comment">/*Itt minden fővárost ki ad, ha az első betűje után udapest-el folytatódik*/</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword keyword-FROM">FROM</span> diakok
+<span class="token keyword keyword-WHERE">WHERE</span> nev <span class="token operator">LIKE</span> <span class="token string">'[sfz]%'</span><span class="token punctuation">;</span>
+<span class="token comment">/*Azokat a neveket választja ki, amik vagy "s" vagy "f" vagy "z" betűvel kezdődnek*/</span>
+<span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword keyword-FROM">FROM</span> autok
+<span class="token keyword keyword-WHERE">WHERE</span> marka <span class="token operator">LIKE</span> <span class="token string">'[a-d]%'</span><span class="token punctuation">;</span>
+<span class="token comment">/*a, b, c vagy d betűvel kezdődő eredményeket kapunk csak*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section><section id="lesson12"><h2>Data types</h2><p>Ez a példa bemutatja az SQL-ben leggyakrabban használt adattípusokat, mint a szöveges típusokat, szám típusokat és dátum típusokat.</p><div class="code-block"><div class="code-toolbar"><pre class="line-numbers language-sql" tabindex="0"><code class="language-sql"><span class="token comment">/*Az SQL-ben leggyakrabban használt adattípusok:*/</span> <span class="token comment">/*Szöveges típusok*/</span> <span class="token comment">/* VARCHAR(size) – Változó 
+hosszúságú szöveg, pl. VARCHAR(50) – 'Kossuth tér 12.' */</span> <span class="token comment">/* TEXT – Nagy mennyiségű szöveg, pl. TEXT
+ – 'Ez egy hosszú leírás.' */</span> <span class="token comment">/*Szám típusok*/</span> <span class="token comment">/* INT(size)/INTEGER(size) – Egész szám, pl. INT – 
+100 */</span> <span class="token comment">/* DECIMAL(size,d)/DEC(size, d) – Tizedes szám (d = milyen pontosan lehessen megadni), pl. 
+DECIMAL(5,2) – 123.45 */</span> <span class="token comment">/* FLOAT – Lebegőpontos szám, pl. FLOAT – 3.14 */</span> <span class="token comment">/* DOUBLE(p,s) – Nagy 
+pontosságú lebegőpontos szám, pl. DOUBLE(10,4) – 12345.6789 */</span> <span class="token comment">/* BOOL/BOOLEAN - Logikai változó: ha
+ 0 az a false, ha nem nulla az true */</span> <span class="token comment">/*Dátum típusok*/</span> <span class="token comment">/* DATE – Dátum, pl. '2025-04-21' */</span> <span class="token comment">/* 
+DATETIME – Dátum és idő, pl. '2025-04-21 14:30:00' */</span> <span class="token comment">/* TIMESTAMP – Automatikusan kezelt dátum/idő,
+ pl. '2025-04-21 14:30:00' */</span> <span class="token comment">/* TIME – Időpont, pl. '14:30:00' */</span> <span class="token comment">/* YEAR – Év, pl. '2025' */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><div class="toolbar"><div class="toolbar-item"><span>SQL</span></div><div class="toolbar-item"><button class="copy-to-clipboard-button" type="button" data-copy-state="copy"><span>Copy</span></button></div></div></div></div></section></main>
+
+<script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
