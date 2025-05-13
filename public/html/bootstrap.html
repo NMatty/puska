@@ -515,7 +515,7 @@ Animált bezárható alert:
                 document.execCommand('copy');
                 window.getSelection().removeAllRanges();
                 
-                const copyBtn = document.querySelector('.copy-btn');
+                const copyBtn = event.currentTarget;
                 copyBtn.textContent = 'Másolva!';
                 setTimeout(() => {
                     copyBtn.textContent = 'Másolás';

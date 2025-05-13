@@ -137,8 +137,8 @@ Hogyan és mit módosíthatsz a navbarban:
                 window.getSelection().addRange(range);
                 document.execCommand('copy');
                 window.getSelection().removeAllRanges();
-                
-                const copyBtn = document.querySelector('.copy-btn');
+
+                const copyBtn = event.currentTarget;
                 copyBtn.textContent = 'Másolva!';
                 setTimeout(() => {
                     copyBtn.textContent = 'Másolás';

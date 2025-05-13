@@ -38,48 +38,82 @@
         <div id="main">
             <div class="col-4">
                 <div class="vertical-scroll-nav mx-auto">
-                    <a href="#toResponsivity">Reszponzivítás</a>
+                    <a href="#toModule">Module</a>
                     <a href="#toNavbar">Navbar</a>
                 </div>
             </div>
 
             <div class="col-8 content">
-                <button data-bs-toggle="collapse" data-bs-target="#responsivity" class="collapseBtn" id="toResponsivity">
-                    Reszponzivítás
+                <button data-bs-toggle="collapse" data-bs-target="#module" class="collapseBtn" id="toModule">
+                    Module
                 </button>
 
-                <div class="collapse mt-2 mb-5 pe-5" id="responsivity">
+                <div class="collapse mt-2 mb-5 pe-5" id="module">
                         <pre class="szovegek">
-A Bootstrap 5 rácsrendszere hat osztályt tartalmaz:
-
-.col- (extra kicsi eszközök - képernyőszélesség 576px-nél kisebb)
-.col-sm- (kis eszközök - képernyőszélesség 576px vagy nagyobb)
-.col-md- (közepes eszközök - képernyőszélesség 768px vagy nagyobb)
-.col-lg- (nagy eszközök - képernyőszélesség 992px vagy nagyobb)
-.col-xl- (extra nagy eszközök - képernyőszélesség 1200px vagy nagyobb)
-.col-xxl- (dupla extra nagy eszközök - képernyőszélesség 1400px vagy nagyobb)
-                        </pre>
+A backend app.js összes module-a, amikre szükség lehet.</pre>
                     <div class="card card-body position-relative">
-                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('responsivityContent')">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('moduleContent')">
                             Másolás
                         </button>
-                        <pre class="bg-light p-3 rounded" id="responsivityContent"><code class="language-html">&lt;!-- Szabályozd az oszlopok szélességét és azt, hogy hogyan jelenjenek meg különböző eszközökön --&gt;
-&lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
+                        <pre class="bg-light p-3 rounded" id="moduleContent"><code class="language-html">//!Module-ok import&aacute;l&aacute;sa
+const express = require('express'); //?npm install express
+const session = require('express-session'); //?npm install express-session
+const path = require('path');
+const fs = require('fs');
 
-&lt;!-- Vagy csak hagyd, hogy a Bootstrap automatikusan beállítsa --&gt;
-&lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;col&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;col&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+const app = express();
+const router = express.Router();
+//!SQL Queries import&aacute;l&aacute;sa
+const db = require(path.join(__dirname + '/sql/db-queries'));
+
+//!Multer
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: './uploads',
+    filename: (request, file, callback) =&gt; {
+        callback(null, file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
+
+&lt;!--Illetve a db-queries.js-ben--&gt;
+const mysql = require('mysql');</code></pre>
+                    </div>
+                </div>
+
+                <div class="collapse mt-2 mb-5 pe-5" id="module">
+                        <pre class="szovegek">
+Frontendben is tudjuk a module-t használni. Body aljára kell rakni egy &lt;script type=&quot;module&quot; src=&quot;index.js&quot;&gt;.
+Egy példa hogyan tudunk exportálni, majd importálni objektumot vagy függvényt.</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('moduleContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="moduleContent"><code class="language-html">// math.js
+function add(a, b) {
+    return a + b;
+}
+module.exports = add;
+
+// index.js
+const add = require(&#39;./math&#39;);
+console.log(add(2, 3)); // Kimenet: 5
+
+&lt;!--Egyszerre többet is tudunk exportálni--&gt;
+// utils.js
+module.exports = {
+appName: &#39;MyApp&#39;,
+version: &#39;1.0.0&#39;,
+multiply: (a, b) =&gt; a * b,
+users: [&#39;Alice&#39;, &#39;Bob&#39;, &#39;Charlie&#39;]
+};
+
+// main.js
+const utils = require(&#39;./utils&#39;);
+console.log(utils.appName); // Kimenet: &#39;MyApp&#39;
+console.log(utils.version); // Kimenet: &#39;1.0.0&#39;
+console.log(utils.multiply(2, 3)); // Kimenet: 6
+console.log(utils.users); // Kimenet: [&#39;Alice&#39;, &#39;Bob&#39;, &#39;Charlie&#39;]</code></pre>
                     </div>
                 </div>
 
@@ -137,8 +171,8 @@ Hogyan és mit módosíthatsz a navbarban:
                 window.getSelection().addRange(range);
                 document.execCommand('copy');
                 window.getSelection().removeAllRanges();
-                
-                const copyBtn = document.querySelector('.copy-btn');
+
+                const copyBtn = event.currentTarget;
                 copyBtn.textContent = 'Másolva!';
                 setTimeout(() => {
                     copyBtn.textContent = 'Másolás';

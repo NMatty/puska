@@ -54,7 +54,7 @@ app.use(express.static('public')); //?public mappa tartalmának betöltése az o
 app.use('/', router);
 
 app.listen(port, () => {
-    console.log('Szerver elérhetősége: ' + port);
+    console.log('Szerver elérhetősége: localhost:' + port);
 });
 //?Szerver futtatása terminalból: npm run start (Ehhez kell a következő: npm install nodemon --save-dev)
 //?Szerver leállítása (MacBook és Windows): Control + C
