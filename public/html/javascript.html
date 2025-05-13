@@ -39,7 +39,7 @@
             <div class="col-4">
                 <div class="vertical-scroll-nav mx-auto">
                     <a href="#toModule">Module</a>
-                    <a href="#toNavbar">Navbar</a>
+                    <a href="#toPost">Post fetch/fetch, promise</a>
                 </div>
             </div>
 
@@ -117,48 +117,103 @@ console.log(utils.users); // Kimenet: [&#39;Alice&#39;, &#39;Bob&#39;, &#39;Char
                     </div>
                 </div>
 
-                <button data-bs-toggle="collapse" data-bs-target="#navbar" class="collapseBtn" id="toNavbar">
-                    Navbar
+                <button data-bs-toggle="collapse" data-bs-target="#post" class="collapseBtn" id="toPost">
+                    Post
                 </button>
 
 
-                <div class="collapse mt-2 mb-5 pe-5" id="navbar">
-                        <pre class="szovegek">
-Hogyan és mit módosíthatsz a navbarban: 
-    - .navbar-expand-xxl|xl|lg|md|sm --> reszponzivításért felelős
-    - .navbar-expand-* --> ha eltávolítod ezt a részt, vertikális lesz a sáv
-    - .justify-content-center - középre állítod a tartalmát
-    - .bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger, .bg-secondary, .bg-dark and .bg-light --> ez módosítja a navbar színét
-    - .navbar-dark (fehér szöveg), .navbar-light(fekete szöveg)
-    - .navbar-brand - lógóhoz (a képet autmatikusan körré formálja)
-    - active (nav-link után) -  kiemeli az adott linket
-    - disabled - inaktívvá teszi a linket
-                        </pre>
+                <div class="collapse mt-2 mb-5 pe-5" id="post">
+                        <pre class="szovegek"><h5>Post - Fetch</h5>
+</pre>
                     <div class="card card-body position-relative">
-                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('navbarContent')">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('postContent')">
                             Másolás
                         </button>
-                        <pre class="bg-light p-3 rounded" id="navbarContent"><code class="language-html">&lt;nav class=&quot;navbar navbar-expand-sm bg-light navbar-light&quot;&gt;
-    &lt;div class=&quot;container-fluid&quot;&gt;
-        &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Logo&lt;/a&gt;
-        &lt;ul class=&quot;navbar-nav&quot;&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link disabled&quot; href=&quot;#&quot;&gt;Disabled&lt;/a&gt;
-            &lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-&lt;/nav&gt;</code></pre>
+                        <pre class="bg-light p-3 rounded" id="postContent"><code class="language-html">function postMethodFetch(url, postObject) {
+    return fetch(url, {
+        method: &#39;POST&#39;,
+        headers: {
+        &#39;Content-Type&#39;: &#39;application/json&#39;
+    },
+    body: JSON.stringify(postObject)
+})
+    .then((response) =&gt; {
+        if (!response.ok) {
+        throw new Error(`Hiba: ${response.status}`);
+    }
+    return response.json();
+    })
+    .catch((error) =&gt; {
+        throw new Error(`Hiba történt: ${error.message}`);
+    });
+}
+
+<b>Használata:</b>
+const url = url;
+const postObject = {
+    title: &#39;foo&#39;,
+    body: &#39;bar&#39;,
+    userId: 1
+};
+postMethodFetch(url, postObject)
+    .then((data) =&gt; {
+        console.log(&#39;Siker:&#39;, data);
+    })
+    .catch((error) =&gt; {
+        console.error(error.message);
+    });</code></pre>
                     </div>
                 </div>
+                <div class="collapse mt-2 mb-5 pe-5" id="post">
+                        <pre class="szovegek"><h5>Post - Fetch, promise</h5>
+</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('postContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="postContent"><code class="language-html">function postMethodFetch(url, postObject) {
+    return new Promise((resolve, reject) =&gt; {
+        fetch(url, {
+            method: &#39;POST&#39;,
+            headers: {
+                &#39;Content-Type&#39;: &#39;application/json&#39;
+            },
+            body: JSON.stringify(postObject)
+        })
+        .then((response) =&gt; {
+            if(!response.ok) {
+                reject(`Hiba: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) =&gt; {
+            resolve(data);
+        })
+        .catch((error) =&gt; {
+            reject(`Hiba történt: ${error.message}`);
+        });
+    });
+}
+
+<b>Használata:</b>
+const url = url; // Egy teszt API
+const postObject = {
+    title: &#39;foo&#39;,
+    body: &#39;bar&#39;,
+    userId: 1
+};
+postMethodFetch(url, postObject)
+    .then((data) =&gt; {
+        console.log(&#39;Sikeres válasz:&#39;, data);
+    })
+    .catch((error) =&gt; {
+        console.error(&#39;Hiba történt:&#39;, error);
+    });</code></pre>
+                    </div>
+                </div>
+
+
+                
             </div>
         </div>
         
