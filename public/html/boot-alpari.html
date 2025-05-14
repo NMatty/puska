@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/alpari.css">
+  <title>Bootstrap</title>
+  <style>
+    .code-block { position: relative; }
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 rounded sticky-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+        aria-label="Navigáció váltása">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item"><b><a class="nav-link" href="../html/bootstrap.html">Főoldal</a></b></li>
+          <li class="nav-item"><a class="nav-link" href="../html/boot-alpari.html">Bootstrap</a></li>
+          <li class="nav-item"><a class="nav-link" href="../html/js-alpari.html">JS</a></li>
+          <li class="nav-item"><a class="nav-link" href="../html/csharp-alpari.html">C#</a></li>
+          <li class="nav-item"><a class="nav-link" href="../html/sql-alpari.html">Adatbázis</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container mb-4">
+    <h1>Bootstrap</h1>
+  </header>
+
+  <main class="container">
+
+    <!-- Töréspont használata -->
+    <section class="mb-5">
+      <h2>Bootstrap – Töréspont használata</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>
+&lt;div class="row"&gt;
+  &lt;div class="col-12 col-md-6"&gt;Tartalom 1&lt;/div&gt;
+  &lt;div class="col-12 col-md-6"&gt;Tartalom 2&lt;/div&gt;
+&lt;/div&gt;
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- Utility classes -->
+    <section class="mb-5">
+      <h2>Bootstrap – Utility classes rendezéshez</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>
+/* Szöveg középre: */         .text-center  
+/* Elem vízszintes középre: */   .mx-auto  
+/* Flex középre igazítás: */     .d-flex.justify-content-center.align-items-center  
+
+/* Margók és padding: */  
+.m-3      /* minden oldalon margin */  
+.p-2      /* minden oldalon padding */  
+.mt-5     /* margin-top */  
+.mb-1     /* margin-bottom */  
+.mx-0     /* margin-left + margin-right */  
+.py-4     /* padding-top + padding-bottom */  
+
+/* Borderek és kerekítés: */  
+.border  
+.border-danger  
+.border-0  
+.rounded  
+.rounded-pill  
+
+/* Háttér- és szöveg-színek, gomb: */  
+&lt;div class="bg-dark text-white p-3"&gt;  
+  &lt;h3 class="text-info"&gt;Cím világoskék szöveggel&lt;/h3&gt;  
+  &lt;p class="text-light"&gt;Világos szöveg sötét háttéren&lt;/p&gt;  
+  &lt;button class="btn btn-success"&gt;Mentés&lt;/button&gt;  
+&lt;/div&gt;  
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- Navbar -->
+    <section class="mb-5">
+      <h2>Bootstrap – Navbar</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>
+&lt;nav class="navbar navbar-expand-lg bg-body-tertiary"&gt;
+  &lt;div class="container-fluid"&gt;
+    &lt;a class="navbar-brand" href="#"&gt;Navbar&lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false"
+      aria-label="Toggle navigation"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="navbarNavDropdown"&gt;
+      &lt;ul class="navbar-nav"&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link active" href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#"&gt;Features&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#"&gt;Pricing&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item dropdown"&gt;
+          &lt;a class="nav-link dropdown-toggle" href="#" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false"&gt;
+            Dropdown link
+          &lt;/a&gt;
+          &lt;ul class="dropdown-menu"&gt;
+            &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Action&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Another action&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Something else here&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- Card -->
+    <section class="mb-5">
+      <h2>Bootstrap – Card</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>
+&lt;div class="card" style="width: 18rem;"&gt;
+  &lt;img src="..." class="card-img-top" alt="..." /&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;
+      Some quick example text to build on the card title and make up the bulk of
+      the card's content.
+    &lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- Carousel -->
+    <section class="mb-5">
+      <h2>Bootstrap – Carousel</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>
+&lt;div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel"&gt;
+  &lt;div class="carousel-indicators"&gt;
+    &lt;button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+      class="active" aria-current="true" aria-label="Slide 1"&gt;&lt;/button&gt;
+    &lt;button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+      aria-label="Slide 2"&gt;&lt;/button&gt;
+    &lt;button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+      aria-label="Slide 3"&gt;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="carousel-inner"&gt;
+    &lt;div class="carousel-item active"&gt;
+      &lt;img src="..." class="d-block w-100" alt="..." /&gt;
+      &lt;div class="carousel-caption d-none d-md-block"&gt;
+        &lt;h5&gt;First slide label&lt;/h5&gt;
+        &lt;p&gt;Some representative placeholder content for the first slide.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="carousel-item"&gt;
+      &lt;img src="..." class="d-block w-100" alt="..." /&gt;
+      &lt;div class="carousel-caption d-none d-md-block"&gt;
+        &lt;h5&gt;Second slide label&lt;/h5&gt;
+        &lt;p&gt;Some representative placeholder content for the second slide.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="carousel-item"&gt;
+      &lt;img src="..." class="d-block w-100" alt="..." /&gt;
+      &lt;div class="carousel-caption d-none d-md-block"&gt;
+        &lt;h5&gt;Third slide label&lt;/h5&gt;
+        &lt;p&gt;Some representative placeholder content for the third slide.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button class="carousel-control-prev" type="button"
+    data-bs-target="#carouselExampleCaptions" data-bs-slide="prev"&gt;
+    &lt;span class="carousel-control-prev-icon" aria-hidden="true"&gt;&lt;/span&gt;
+    &lt;span class="visually-hidden"&gt;Previous&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;button class="carousel-control-next" type="button"
+    data-bs-target="#carouselExampleCaptions" data-bs-slide="next"&gt;
+    &lt;span class="carousel-control-next-icon" aria-hidden="true"&gt;&lt;/span&gt;
+    &lt;span class="visually-hidden"&gt;Next&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <section class="mb-5">
+      <h2>Bootstrap – Modal</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>
+&lt;button type="button" class="btn btn-primary" data-bs-toggle="modal"
+  data-bs-target="#exampleModal"&gt;
+  Launch demo modal
+&lt;/button&gt;
+
+&lt;div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h1 class="modal-title fs-5" id="exampleModalLabel"&gt;Modal title&lt;/h1&gt;
+        &lt;button type="button" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"&gt;&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;…&lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;button type="button" class="btn btn-secondary"
+          data-bs-dismiss="modal"&gt;Close&lt;/button&gt;
+        &lt;button type="button" class="btn btn-primary"&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section class="mb-5">
+      <h2>Bootstrap – Form</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>
+&lt;form class="row g-3"&gt;
+  &lt;div class="col-md-6"&gt;
+    &lt;label for="inputEmail4" class="form-label"&gt;Email&lt;/label&gt;
+    &lt;input type="email" class="form-control" id="inputEmail4" placeholder="Enter your email" /&gt;
+  &lt;/div&gt;
+  &lt;div class="col-md-6"&gt;
+    &lt;label for="inputPassword4" class="form-label"&gt;Password&lt;/label&gt;
+    &lt;input type="password" class="form-control" id="inputPassword4" placeholder="Enter your password" /&gt;
+  &lt;/div&gt;
+  &lt;!-- … minden input típus példával … --&gt;
+  &lt;div class="col-12"&gt;
+    &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- Table -->
+    <section class="mb-5">
+      <h2>Bootstrap – Table</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>
+&lt;table class="table table-striped table-hover"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;#&lt;/th&gt;
+      &lt;th scope="col"&gt;First&lt;/th&gt;
+      &lt;th scope="col"&gt;Last&lt;/th&gt;
+      &lt;th scope="col"&gt;Handle&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;1&lt;/th&gt;
+      &lt;td&gt;Mark&lt;/td&gt;
+      &lt;td&gt;Otto&lt;/td&gt;
+      &lt;td&gt;@mdo&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;2&lt;/th&gt;
+      &lt;td&gt;Jacob&lt;/td&gt;
+      &lt;td&gt;Thornton&lt;/td&gt;
+      &lt;td&gt;@fat&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th scope="row"&gt;3&lt;/th&gt;
+      &lt;td colspan="2"&gt;Larry the Bird&lt;/td&gt;
+      &lt;td&gt;@twitter&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- Alert -->
+    <section class="mb-5">
+      <h2>Bootstrap – Alert</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>
+&lt;div class="alert alert-primary" role="alert"&gt;A simple primary alert—check it out!&lt;/div&gt;
+&lt;div class="alert alert-secondary" role="alert"&gt;A simple secondary alert—check it out!&lt;/div&gt;
+&lt;div class="alert alert-success" role="alert"&gt;A simple success alert—check it out!&lt;/div&gt;
+&lt;div class="alert alert-danger" role="alert"&gt;A simple danger alert—check it out!&lt;/div&gt;
+&lt;div class="alert alert-warning" role="alert"&gt;A simple warning alert—check it out!&lt;/div&gt;
+&lt;div class="alert alert-info" role="alert"&gt;A simple info alert—check it out!&lt;/div&gt;
+&lt;div class="alert alert-light" role="alert"&gt;A simple light alert—check it out!&lt;/div&gt;
+&lt;div class="alert alert-dark" role="alert"&gt;A simple dark alert—check it out!&lt;/div&gt;
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- Button -->
+    <section class="mb-5">
+      <h2>Bootstrap – Button</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>
+&lt;!-- Linkként működő gomb --&gt;
+&lt;a class="btn btn-primary" href="#" role="button"&gt;Link&lt;/a&gt;
+
+&lt;!-- Hagyományos gomb --&gt;
+&lt;button class="btn btn-primary" type="submit"&gt;Button&lt;/button&gt;
+
+&lt;!-- Input típusú gomb --&gt;
+&lt;input class="btn btn-primary" type="button" value="Input" /&gt;
+
+&lt;!-- Körvonalas gomb --&gt;
+&lt;button type="button" class="btn btn-outline-primary"&gt;Primary&lt;/button&gt;
+
+&lt;!-- Letiltott gomb --&gt;
+&lt;button type="button" class="btn btn-primary" disabled&gt;Primary button&lt;/button&gt;
+
+&lt;!-- Letiltott linkként működő gomb --&gt;
+&lt;a href="#" class="btn btn-primary disabled" tabindex="-1" role="button" aria-disabled="true"&gt;
+  Primary link
+&lt;/a&gt;
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- Button Group -->
+    <section class="mb-5">
+      <h2>Bootstrap – Button group</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>
+&lt;div class="btn-group" role="group" aria-label="Basic example"&gt;
+  &lt;button type="button" class="btn btn-primary"&gt;Left&lt;/button&gt;
+  &lt;button type="button" class="btn btn-primary"&gt;Middle&lt;/button&gt;
+  &lt;button type="button" class="btn btn-primary"&gt;Right&lt;/button&gt;
+&lt;/div&gt;
+        </code></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const code = btn.nextElementSibling.querySelector('code').innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.textContent = 'Copied';
+          setTimeout(() => btn.textContent = 'Copy', 2000);
+        });
+      });
+    });
+  </script>
+  <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

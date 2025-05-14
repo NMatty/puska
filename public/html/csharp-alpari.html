@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/alpari.css">
+  <title>C#</title>
+  <style>
+    .code-block { position: relative; }
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 rounded sticky-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+        aria-label="Navigáció váltása">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item"><b><a class="nav-link" href="../html/bootstrap.html">Főoldal</a></b></li>
+          <li class="nav-item"><a class="nav-link" href="../html/boot-alpari.html">Bootstrap</a></li>
+          <li class="nav-item"><a class="nav-link" href="../html/js-alpari.html">JS</a></li>
+          <li class="nav-item"><a class="nav-link" href="../html/csharp-alpari.html">C#</a></li>
+          <li class="nav-item"><a class="nav-link" href="../html/sql-alpari.html">Adatbázis</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container mb-4">
+    <h1>C#</h1>
+  </header>
+
+  <main class="container">
+
+    <!-- Fájlba írás -->
+    <section class="mb-5">
+      <h2>C# – Fájlba írás (StreamWriter)</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+
+internal class Program
+{
+    /* Írás fájlba */
+    public static void Iras(List&lt;Class&gt; lista)
+    {
+        // FileStream létrehozása (filenév, FileMode.Create felülírja a fájlt, ha létezik)
+        FileStream fs = new FileStream("file.txt", FileMode.Create);
+        // StreamWriter létrehozása (FileStream, kódolás)
+        StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
+        // Fejléc írása
+        sw.WriteLine("Header");
+        // Lista elemeinek írása
+        foreach (var item in lista)
+        {
+            sw.WriteLine($"{item.Property1};{item.Property2}");
+        }
+        // Fájl lezárása
+        sw.Close();
+        fs.Close();
+    }
+
+    public static void Feladat3(List&lt;Class&gt; lista)
+    {
+        Console.WriteLine("3. feladat");
+        Console.WriteLine($"A lista elemeinek száma: {lista.Count}");
+    }
+
+    static void Main(string[] args)
+    {
+        // Példa lista
+        List&lt;Class&gt; adatok = new List&lt;Class&gt;
+        {
+            new Class("Adat1", "Value1"),
+            new Class("Adat2", "Value2")
+        };
+        Iras(adatok);
+        Feladat3(adatok);
+        Console.ReadKey();
+    }
+}
+
+// Példa Class
+public class Class
+{
+    public string Property1 { get; set; }
+    public string Property2 { get; set; }
+
+    public Class(string prop1, string prop2)
+    {
+        Property1 = prop1;
+        Property2 = prop2;
+    }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- Fájlbeolvasás -->
+    <section class="mb-5">
+      <h2>C# – Fájlbeolvasás (StreamReader)</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Linq;
+
+internal class Program
+{
+    public static List&lt;Class&gt; Beolvas()
+    {
+        var lista = new List&lt;Class&gt;();
+        // Fájl megnyitása olvasásra
+        FileStream fs = new FileStream("file.txt", FileMode.Open);
+        StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+        // Fejléc átugrása
+        sr.ReadLine();
+        while (!sr.EndOfStream)
+        {
+            string sor = sr.ReadLine();
+            var parts = sor.Split(';');
+            lista.Add(new Class(parts[0], parts.Length > 1 ? parts[1] : ""));
+        }
+        sr.Close();
+        fs.Close();
+        return lista;
+    }
+
+    public static void Feladat3(List&lt;Class&gt; lista)
+    {
+        Console.WriteLine("3. feladat");
+        Console.WriteLine($"A beolvasott adatsorok száma: {lista.Count()}");
+    }
+
+    static void Main(string[] args)
+    {
+        var adatok = Beolvas();
+        Feladat3(adatok);
+        Console.ReadKey();
+    }
+}
+
+// Példa Class
+public class Class
+{
+    public string Property1 { get; set; }
+    public Class(string prop1) { Property1 = prop1; }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- Dictionary -->
+    <section class="mb-5">
+      <h2>C# – Szótár használata (Dictionary)</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>using System;
+using System.Collections.Generic;
+
+public static void BuildDictionary(List&lt;Class&gt; lista)
+{
+    var dict = new Dictionary&lt;string, int&gt;();
+    foreach (var item in lista)
+    {
+        if (dict.ContainsKey(item.StringAdat))
+            dict[item.StringAdat]++;
+        else
+            dict[item.StringAdat] = 1;
+    }
+
+    Console.WriteLine("Dictionary tartalma:");
+    foreach (var kvp in dict)
+        Console.WriteLine($"{kvp.Key} – {kvp.Value}");
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- FileDialog -->
+    <section class="mb-5">
+      <h2>C# WPF/Konzol – FileDialog használata</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>/* OpenFileDialog (WPF): */
+private void Megnyit(object sender, RoutedEventArgs e)
+{
+    var ofd = new OpenFileDialog
+    {
+        Title = "Válasszon egy fájlt!",
+        Filter = "Szöveges fájlok|*.txt|WORD dokumentumok|*.docx;*.doc|Minden fájl|*.*"
+    };
+    if (ofd.ShowDialog() == true)
+    {
+        string utvonal = ofd.FileName;
+        using var fs = new FileStream(utvonal, FileMode.Open);
+        // További beolvasás...
+    }
+    else
+    {
+        MessageBox.Show("Nincs kiválasztott fájl!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+    }
+}
+
+/* SaveFileDialog (WPF): */
+private void Ment(object sender, RoutedEventArgs e)
+{
+    var sfd = new SaveFileDialog
+    {
+        Title = "Mentés másként",
+        Filter = "Szöveges fájl|*.txt|CSV fájl|*.csv"
+    };
+    if (sfd.ShowDialog() == true)
+    {
+        string utvonal = sfd.FileName;
+        using var sw = new StreamWriter(new FileStream(utvonal, FileMode.Create), Encoding.UTF8);
+        sw.WriteLine("Ez a sor ki lett írva a fájlba.");
+    }
+    else
+    {
+        MessageBox.Show("Nincs kiválasztott fájl!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+    }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- Grid XAML -->
+    <section class="mb-5">
+      <h2>C# WPF – Ablak beállítások és Grid</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>&lt;Window
+    Title="AblakNeve"
+    Height="450"
+    Width="800"
+    MinWidth="300"
+    MaxHeight="500"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"&gt;
+
+    &lt;Grid&gt;
+        &lt;Grid.RowDefinitions&gt;
+            &lt;RowDefinition Height="*" /&gt;
+            &lt;RowDefinition Height="3*" /&gt;
+        &lt;/Grid.RowDefinitions&gt;
+        &lt;Grid.ColumnDefinitions&gt;
+            &lt;ColumnDefinition Width="*" /&gt;
+            &lt;ColumnDefinition Width="5*" /&gt;
+        &lt;/Grid.ColumnDefinitions&gt;
+
+        &lt;Button
+            x:Name="Gomb2"
+            Content="Felirat"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2" /&gt;
+    &lt;/Grid&gt;
+&lt;/Window&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- XAML Controls -->
+    <section class="mb-5">
+      <h2>C# WPF – Vezérlők definiálása XAML-ben</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>&lt;Label Content="Szöveg:" /&gt;
+
+&lt;TextBox x:Name="Tbox1" /&gt;
+
+&lt;DataGrid x:Name="dgrid" AutoGenerateColumns="True" /&gt;
+
+&lt;Button x:Name="Gomb1" Content="Küldés" Width="100" Height="20" /&gt;
+
+&lt;TextBox x:Name="Tbox" Margin="0,10,20,30" /&gt;
+
+&lt;Button Content="Felirat" Width="50" Height="20" /&gt;
+&lt;Button&gt;Felirat&lt;/Button&gt;
+&lt;Button&gt;
+    &lt;Button.Content&gt;Felirat&lt;/Button.Content&gt;
+&lt;/Button&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- Controls Access -->
+    <section class="mb-5">
+      <h2>C# WPF – Vezérlők elérése kódból</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>// TextBox módosítása
+TextBoxNev.Text = "Szöveg";
+TextBoxNev.IsEnabled = false;
+
+// Label módosítása
+LabelNev.Content = "Tartalom";
+
+// RadioButton / CheckBox állapot
+RadioButtonNev.IsChecked = true;
+CheckBoxNev.IsChecked = false;
+
+// ListBox / ComboBox
+ListBoxNev.Items.Clear();
+ListBoxNev.Items.Add("Elem1");
+ComboBoxNev.ItemsSource = listaNeve;
+
+// DataGrid
+DataGridNev.ItemsSource = listaNeve;
+var kijelolt = DataGridNev.SelectedItem;</code></pre>
+      </div>
+    </section>
+
+    <!-- Multiple Windows -->
+    <section class="mb-5">
+      <h2>C# WPF – Több ablak kezelése</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>// MainWindow.xaml.cs
+public partial class MainWindow : Window
+{
+    public MainWindow() => InitializeComponent();
+
+    protected override void OnClosed(EventArgs e)
+    {
+        Application.Current.Shutdown();
+    }
+
+    private void Ugras(object sender, RoutedEventArgs e)
+    {
+        var masik = new MasikAblak(this);
+        this.Hide();
+        masik.Show();
+    }
+}
+
+// MasikAblak.xaml.cs
+public partial class MasikAblak : Window
+{
+    private MainWindow mw;
+
+    public MasikAblak(MainWindow mw)
+    {
+        InitializeComponent();
+        this.mw = mw;
+    }
+
+    protected override void OnClosed(EventArgs e)
+    {
+        this.Close();
+        mw.Show();
+    }
+
+    private void UgrasVissza(object sender, RoutedEventArgs e)
+    {
+        this.Close();
+        mw.Show();
+    }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- MessageBox -->
+    <section class="mb-5">
+      <h2>C# WPF – MessageBox használata</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>MessageBox.Show(
+    "Szöveg",
+    "Cím",
+    MessageBoxButton.OK,
+    MessageBoxImage.Information
+);</code></pre>
+      </div>
+    </section>
+
+    <!-- SQL Connection -->
+    <section class="mb-5">
+      <h2>C# – SQL kapcsolat és műveletek</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+
+// Kapcsolat kezelő osztály
+class DBConnect
+{
+    private MySqlConnection con;
+
+    public DBConnect(string host, string dbname, string ui, string pw)
+    {
+        con = new MySqlConnection(
+            $"Database={dbname};Data Source={host};User Id={ui};Password={pw};"
+        );
+    }
+
+    private bool Connect()
+    {
+        try { con.Open(); return true; }
+        catch { return false; }
+    }
+
+    private bool ConnectClose()
+    {
+        try { con.Close(); return true; }
+        catch { return false; }
+    }
+
+    public void InsertData(TesztOsztaly temp)
+    {
+        if (Connect())
+        {
+            string query = "INSERT INTO teszttabla (nev, kor) VALUES (@nev, @kor)";
+            var cmd = new MySqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@nev", temp.Nev);
+            cmd.Parameters.AddWithValue("@kor", temp.Kor);
+            cmd.ExecuteNonQuery();
+            ConnectClose();
+        }
+    }
+
+    public List&lt;TesztOsztaly&gt; SelectAll()
+    {
+        var adatok = new List&lt;TesztOsztaly&gt;();
+        if (Connect())
+        {
+            var cmd = new MySqlCommand("SELECT * FROM teszttabla", con);
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+                adatok.Add(new TesztOsztaly(
+                    reader.GetInt32(0),
+                    reader.GetString(1),
+                    reader.GetInt32(2)
+                ));
+            ConnectClose();
+        }
+        return adatok;
+    }
+
+    public double AtlagKor()
+    {
+        double avg = 0;
+        if (Connect())
+        {
+            var cmd = new MySqlCommand("SELECT AVG(kor) FROM teszttabla", con);
+            var result = cmd.ExecuteScalar();
+            if (result != null) avg = Convert.ToDouble(result);
+            ConnectClose();
+        }
+        return avg;
+    }
+}
+
+// Gomb esemény
+private void OnButtonClick(object sender, RoutedEventArgs e)
+{
+    var db = new DBConnect("127.0.0.1", "teszt", "root", "");
+    db.InsertData(new TesztOsztaly("JÓNÁS", 18));
+    var all = db.SelectAll();
+    datagrid.ItemsSource = all;
+    MessageBox.Show($"Átlag kor: {db.AtlagKor()}", "Eredmény");
+}
+
+// TesztOsztaly
+class TesztOsztaly
+{
+    public int Id { get; set; }
+    public string Nev { get; set; }
+    public int Kor { get; set; }
+
+    public TesztOsztaly(int id, string nev, int kor) { Id = id; Nev = nev; Kor = kor; }
+    public TesztOsztaly(string nev, int kor) { Nev = nev; Kor = kor; }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- Inheritance -->
+    <section class="mb-5">
+      <h2>C# – Származtatott osztályok példa</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>// Alap osztály
+class Animal
+{
+    public void Eat()  => Console.WriteLine("Az állat eszik.");
+    public void Sleep() => Console.WriteLine("Az állat alszik.");
+}
+
+// Származtatott osztályok
+class Dog : Animal
+{
+    public void Bark() => Console.WriteLine("A kutya ugat: Vau vau!");
+}
+
+class Cat : Animal
+{
+    public void Meow() => Console.WriteLine("A macska nyávog: Miaú!");
+}
+
+class Program
+{
+    static void Main()
+    {
+        var myDog = new Dog();
+        myDog.Eat();
+        myDog.Bark();
+
+        var myCat = new Cat();
+        myCat.Sleep();
+        myCat.Meow();
+    }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- Casting -->
+    <section class="mb-5">
+      <h2>C# – Típus kényszerítés (Type Casting)</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>double doubleNumber = 8.79;
+int intNumber = (int)doubleNumber;  // eredmény: 8</code></pre>
+      </div>
+    </section>
+
+    <!-- Abstract -->
+    <section class="mb-5">
+      <h2>C# – Absztrakt osztályok és metódusok</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>using System;
+
+// Absztrakt osztály
+abstract class Vehicle
+{
+    public abstract void Start();
+    public void Stop() => Console.WriteLine("A jármű megállt.");
+}
+
+// Leszármazottok
+class Car : Vehicle
+{
+    public override void Start() => Console.WriteLine("Az autó kulccsal indul.");
+}
+
+class Bicycle : Vehicle
+{
+    public override void Start() => Console.WriteLine("A bicikli pedálozással indul.");
+}
+
+class Program
+{
+    static void Main()
+    {
+        Vehicle myCar = new Car();
+        myCar.Start();
+        myCar.Stop();
+
+        Vehicle myBike = new Bicycle();
+        myBike.Start();
+        myBike.Stop();
+    }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- Math -->
+    <section class="mb-5">
+      <h2>C# – Math osztály metódusai</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>Math.Sqrt(number);    // négyzetgyök
+Math.Abs(number);     // abszolút érték
+Math.Round(number);   // kerekítés
+Math.Ceiling(number); // felfelé kerekítés
+Math.Floor(number);   // lefelé kerekítés</code></pre>
+      </div>
+    </section>
+
+    <!-- HashSet -->
+    <section class="mb-5">
+      <h2>C# – HashSet duplikációszűrés</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>using System;
+using System.Collections.Generic;
+
+var nevekLista = new List&lt;string&gt; { "név", "név2", "név3", "név" };
+var egyediNevek = new HashSet&lt;string&gt;(nevekLista);
+
+Console.WriteLine("Egyedi nevek:");
+foreach (var nev in egyediNevek)
+    Console.WriteLine(nev);</code></pre>
+      </div>
+    </section>
+
+    <!-- Random -->
+    <section class="mb-5">
+      <h2>C# – Véletlenszám generálás (Random)</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>var rnd = new Random();
+
+// Egész szám 5–14 között
+int szamInt = rnd.Next(5, 15);
+
+// Lebegőpontos szám 0–1 között
+double szamDouble = rnd.NextDouble();
+
+// Logikai érték
+bool logikai = rnd.Next(2) == 0;</code></pre>
+      </div>
+    </section>
+
+    <!-- Data types -->
+    <section class="mb-5">
+      <h2>C# – Alapvető adattípusok</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>int intNumber = 5;              // egész szám
+double doubleNumber = 3.79;       // lebegőpont
+char egyKarakter = 'D';           // karakter
+bool myBool = true;               // logikai
+string valamiSzoveg = "szöveg";   // szöveg</code></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const code = btn.nextElementSibling.querySelector('code').innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.textContent = 'Copied';
+          setTimeout(() => btn.textContent = 'Copy', 2000);
+        });
+      });
+    });
+  </script>
+  <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/alpari.css">
+  <title>Adatbázis</title>
+  <style>
+    .code-block { position: relative; }
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 rounded sticky-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+        aria-label="Navigáció váltása">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item"><b><a class="nav-link" href="../html/bootstrap.html">Főoldal</a></b></li>
+          <li class="nav-item"><a class="nav-link" href="../html/boot-alpari.html">Bootstrap</a></li>
+          <li class="nav-item"><a class="nav-link" href="../html/js-alpari.html">JS</a></li>
+          <li class="nav-item"><a class="nav-link" href="../html/csharp-alpari.html">C#</a></li>
+          <li class="nav-item"><a class="nav-link" href="../html/sql-alpari.html">Adatbázis</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container mb-4">
+    <h1>Adatbázis</h1>
+  </header>
+
+  <main class="container">
+
+    <!-- Adatbázis létrehozása -->
+    <section class="mb-5">
+      <h2>Adatbázis létrehozása</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>CREATE DATABASE IF NOT EXISTS my_database
+CHARACTER SET utf8
+COLLATE utf8_hungarian_ci;
+USE my_database;</code></pre>
+      </div>
+    </section>
+
+    <!-- Tábla létrehozása -->
+    <section class="mb-5">
+      <h2>Tábla létrehozása</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>CREATE TABLE IF NOT EXISTS versenyzo (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nev VARCHAR(50) NOT NULL,
+    csapat VARCHAR(50) NOT NULL,
+    nemzetiseg VARCHAR(100) NOT NULL,
+    versenyszam INT NOT NULL,
+    gyozelmek INT DEFAULT 0,
+    bajnoki_cimek INT DEFAULT 0,
+    szuletesi_ev INT NOT NULL,
+    pontszam INT DEFAULT 0
+);</code></pre>
+      </div>
+    </section>
+
+    <!-- Tábla módosítása -->
+    <section class="mb-5">
+      <h2>Tábla módosítása</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>ALTER TABLE table_name ADD column_name datatype;
+ALTER TABLE table_name DROP COLUMN column_name;
+ALTER TABLE table_name MODIFY COLUMN column_name datatype;</code></pre>
+      </div>
+    </section>
+
+    <!-- Nézettábla létrehozása -->
+    <section class="mb-5">
+      <h2>Nézettábla létrehozása</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE mezoertek = ?;</code></pre>
+      </div>
+    </section>
+
+    <!-- PRIMARY KEY, FOREIGN KEY -->
+    <section class="mb-5">
+      <h2>PRIMARY KEY, FOREIGN KEY</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>CREATE TABLE Orders (
+    OrderID int NOT NULL,
+    OrderNumber int NOT NULL,
+    PersonID int,
+    PRIMARY KEY (OrderID),
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+);</code></pre>
+      </div>
+    </section>
+
+    <!-- SQL Lekérdezés Lépések -->
+    <section class="mb-5">
+      <h2>SQL Lekérdezés Lépések</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>SELECT
+FROM
+WHERE
+GROUP BY
+HAVING
+ORDER BY
+LIMIT</code></pre>
+      </div>
+    </section>
+
+    <!-- INSERT INTO -->
+    <section class="mb-5">
+      <h2>INSERT INTO</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>INSERT INTO versenyzo (...)
+VALUES (...);</code></pre>
+      </div>
+    </section>
+
+    <!-- UPDATE -->
+    <section class="mb-5">
+      <h2>UPDATE</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>UPDATE versenyzo
+SET nev = ?
+WHERE id = ?;</code></pre>
+      </div>
+    </section>
+
+    <!-- DELETE -->
+    <section class="mb-5">
+      <h2>DELETE</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>DELETE FROM versenyzo
+WHERE id = ?;</code></pre>
+      </div>
+    </section>
+
+    <!-- INNER JOIN -->
+    <section class="mb-5">
+      <h2>INNER JOIN</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name = table2.column_name;</code></pre>
+      </div>
+    </section>
+
+    <!-- Aggregáló függvények -->
+    <section class="mb-5">
+      <h2>Aggregáló függvények</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>MIN(), MAX(), COUNT(), SUM(), AVG()</code></pre>
+      </div>
+    </section>
+
+    <!-- LIKE és szűrés -->
+    <section class="mb-5">
+      <h2>LIKE és szűrés</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>SELECT * FROM tanarok WHERE keresztnev LIKE '%a%';
+SELECT * FROM orszagok WHERE fovaros LIKE '_udapest';
+SELECT * FROM diakok WHERE nev LIKE '[sfz]%';
+SELECT * FROM autok WHERE marka LIKE '[a-d]%';</code></pre>
+      </div>
+    </section>
+
+    <!-- Adattípusok -->
+    <section class="mb-5">
+      <h2>Adattípusok</h2>
+      <div class="code-block">
+        <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+        <pre><code>VARCHAR, TEXT
+INT, DECIMAL, FLOAT, DOUBLE
+BOOLEAN
+DATE, DATETIME, TIMESTAMP, TIME, YEAR</code></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const code = btn.nextElementSibling.querySelector('code').innerText.trim();
+        navigator.clipboard.writeText(code).then(() => {
+          btn.textContent = 'Copied';
+          setTimeout(() => btn.textContent = 'Copy', 2000);
+        });
+      });
+    });
+  </script>
+  <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
