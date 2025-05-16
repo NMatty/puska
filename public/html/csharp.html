@@ -41,95 +41,166 @@
         <div id="main">
             <div class="col-4">
                 <div class="vertical-scroll-nav mx-auto">
-                    <a href="#toResponsivity">Reszponzivítás</a>
-                    <a href="#toNavbar">Navbar</a>
+                    <a href="#toFileBeir">File-ba írás</a>
+                    <a href="#toFileBeolvas">File beolvasás</a>
+                    <a href="#toFileBeolvas2">File beolvasás részekre bontva (opcionális)</a>
                 </div>
             </div>
 
             <div class="col-8 content">
-                <button data-bs-toggle="collapse" data-bs-target="#responsivity" class="collapseBtn" id="toResponsivity">
-                    Reszponzivítás
+                <button data-bs-toggle="collapse" data-bs-target="#filebair" class="collapseBtn" id="toFileBeir">
+                    File-ba írás
                 </button>
 
-                <div class="collapse mt-2 mb-5 pe-5" id="responsivity">
+                <div class="collapse mt-2 mb-5 pe-5" id="filebair">
                         <pre class="szovegek">
-A Bootstrap 5 rácsrendszere hat osztályt tartalmaz:
+Lépések:
 
-.col- (extra kicsi eszközök - képernyőszélesség 576px-nél kisebb)
-.col-sm- (kis eszközök - képernyőszélesség 576px vagy nagyobb)
-.col-md- (közepes eszközök - képernyőszélesség 768px vagy nagyobb)
-.col-lg- (nagy eszközök - képernyőszélesség 992px vagy nagyobb)
-.col-xl- (extra nagy eszközök - képernyőszélesség 1200px vagy nagyobb)
-.col-xxl- (dupla extra nagy eszközök - képernyőszélesség 1400px vagy nagyobb)
+Fájl létrehozásához:
+    1. FileStream fs = new FileStream("filenev.txt", FileMode.Create);
+(vagy)
+Fájl hozzáíráshoz:
+    1. FileStream fs = new FileStream("filenev.txt", FileMode.Append);
+(Ha a feladat más fájlformátumot kér, akkor ne txt-be ments!)
+
+Fájl kezelés értelmezése:
+    2. StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
+
+(Innentől az sw-vel kezeljük a file-t: pl.: sw.WriteLine("Sorszöveg"))
+(Ez maga a köztes rész, itt kell kezelni mindent ami a file-hoz tartozik)
+
+StreamWriter bezárása:
+    3. sw.Close();
+FileStream bezárása:
+    4. fs.Close();
                         </pre>
                     <div class="card card-body position-relative">
                         <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('responsivityContent')">
                             Másolás
                         </button>
-                        <pre class="bg-light p-3 rounded" id="responsivityContent"><code class="language-html">&lt;!-- Szabályozd az oszlopok szélességét és azt, hogy hogyan jelenjenek meg különböző eszközökön --&gt;
-&lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;col-*-*&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
+                        <pre class="bg-light p-3 rounded" id="responsivityContent"><code class="language-html">FileStream fs = new FileStream("filenev.txt", FileMode.Create);
+StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
 
-&lt;!-- Vagy csak hagyd, hogy a Bootstrap automatikusan beállítsa --&gt;
-&lt;div class=&quot;row&quot;&gt;
-    &lt;div class=&quot;col&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;col&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;col&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+sw.WriteLine("nev;osztaly;atlag"); // iskola tanulóinak az átlagának mentése
+// ez egy felső címsort (fejlécet) csinál, ami feladattól függ, hogy kéri-e
+
+for (int i = 0; i < tanulok.Count; i++)
+{
+    sw.WriteLine($"{tanulok[i].Nev};{tanulok[i].Osztaly};{tanulok[i].Atlag}");
+    // Egy előre megadott tanulok osztály listával dolgozik, ahol minden tanulot felír a txt fájlba
+    // Magyarul megadjuk ; jelek elé és közé a tartalmat, amit ki akarunk íratni
+}
+
+sw.Close();
+fs.Close();</code></pre>
                     </div>
                 </div>
 
-                <button data-bs-toggle="collapse" data-bs-target="#navbar" class="collapseBtn" id="toNavbar">
-                    Navbar
+                <button data-bs-toggle="collapse" data-bs-target="#filebeolvas" class="collapseBtn" id="toFileBeolvas">
+                    File beolvasás
                 </button>
 
 
-                <div class="collapse mt-2 mb-5 pe-5" id="navbar">
+                <div class="collapse mt-2 mb-5 pe-5" id="filebeolvas">
                         <pre class="szovegek">
-Hogyan és mit módosíthatsz a navbarban: 
-    - .navbar-expand-xxl|xl|lg|md|sm --> reszponzivításért felelős
-    - .navbar-expand-* --> ha eltávolítod ezt a részt, vertikális lesz a sáv
-    - .justify-content-center - középre állítod a tartalmát
-    - .bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger, .bg-secondary, .bg-dark and .bg-light --> ez módosítja a navbar színét
-    - .navbar-dark (fehér szöveg), .navbar-light(fekete szöveg)
-    - .navbar-brand - lógóhoz (a képet autmatikusan körré formálja)
-    - active (nav-link után) -  kiemeli az adott linket
-    - disabled - inaktívvá teszi a linket
-                        </pre>
+Listába való beolvasás:
+Lépések:
+
+Fájl beolvasása:
+    1. FileStream fs = new FileStream("filenev.txt", FileMode.Open);
+(Ha a feladat más fájlformátumot kér, akkor ne txt-t nyiss meg!)
+
+Fájl kezelés értelmezése:
+    2. StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+
+(Innentől az sr-rel kezeljük a file-t: pl.: sr.ReadLine() => egy sor beolvasása a file-ból)
+(Ez maga a köztes rész, itt kell kezelni mindent ami a file-hoz tartozik)
+
+StreamReader bezárása:
+    3. sr.Close();
+FileStream bezárása:
+    4. fs.Close();</pre>
                     <div class="card card-body position-relative">
                         <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('navbarContent')">
                             Másolás
                         </button>
-                        <pre class="bg-light p-3 rounded" id="navbarContent"><code class="language-html">&lt;nav class=&quot;navbar navbar-expand-sm bg-light navbar-light&quot;&gt;
-    &lt;div class=&quot;container-fluid&quot;&gt;
-        &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Logo&lt;/a&gt;
-        &lt;ul class=&quot;navbar-nav&quot;&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link active&quot; href=&quot;#&quot;&gt;Active&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link&quot; href=&quot;#&quot;&gt;Link&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;nav-item&quot;&gt;
-                &lt;a class=&quot;nav-link disabled&quot; href=&quot;#&quot;&gt;Disabled&lt;/a&gt;
-            &lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-&lt;/nav&gt;</code></pre>
+                        <pre class="bg-light p-3 rounded" id="navbarContent"><code class="language-html">List<Tanulo> tanulok = new List<Tanulo>(); // Tanulo osztályú lista létrehozása
+// Ez a lista az alábbiakat kéri: név;osztály;átlag
+
+FileStream fs = new FileStream("filenev.txt", FileMode.Open);
+StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+
+// Amennyiben van fejléc (első soros címsor) be kell olvasni az első sort
+sr.ReadLine();
+
+while (!sr.EndOfStream) // Amíg a txt végére nem ér
+{
+    string sor = sr.ReadLine();
+    tanulok.Add(new Tanulo(
+        sor.Split(';')[1],
+        Convert.ToInt32(sor.Split(';')[1]),
+        Convert.ToInt32(sor.Split(';')[2])
+        ));
+    // Így a tanulok listához hozzáadunk mindig egy új Tanulo-t, akiknek az elemeit a ; Split-elésével érünk el.
+    // Ha mondjuk a txt file-ban mással választja el őket, akkor nyilván ; helyett a megadott karaktert kell megadni.
+}
+
+sr.Close();
+fs.Close();</code></pre>
                     </div>
                 </div>
+
+                <button data-bs-toggle="collapse" data-bs-target="#filebeolvas2" class="collapseBtn" id="toFileBeolvas2">
+                    File beolvasás részekre bontva (opcionális)<br>(pl.: dátumok kezelése külön)
+                </button>
+
+
+                <div class="collapse mt-2 mb-5 pe-5" id="filebeolvas2">
+<pre class="szovegek">
+Sor tartalmainak tárolása listában:
+    string[] parts = sor.Split(';');
+
+Tartalom különszedése listán belül:
+    string[] innerparts = parts[Tartalom_indexe].Split('.');
+Így mostmár hozzá tudunk rendelni az adott részhez: pl.: Convert.ToInt32(innerparts[0])
+</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('navbarContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="navbarContent"><code class="language-html">List<Tanulo> tanulok = new List<Tanulo>(); // Tanulo osztályú lista létrehozása
+// Ez a lista az alábbiakat kéri: név;osztály;átlag;születési_év;születési_hónap;születési_nap
+// Viszont a txt mondjuk nem szedi külön az évet, hónapot napot, hanem egyben írja .-tal elválasztva
+
+FileStream fs = new FileStream("filenev.txt", FileMode.Open);
+StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+
+// Amennyiben van fejléc (első soros címsor) be kell olvasni az első sort
+sr.ReadLine();
+
+while (!sr.EndOfStream) // Amíg a txt végére nem ér
+{
+    string sor = sr.ReadLine();
+    string[] parts = sor.Split(';');
+    string[] innerparts = parts[3].Split('.');
+    tanulok.Add(new Tanulo
+        (parts[0], 
+        Convert.ToInt32(parts[1]), 
+        Convert.ToInt32(parts[2]), 
+        Convert.ToInt32(innerparts[0]),
+        Convert.ToInt32(innerparts[1]),
+        Convert.ToInt32(innerparts[2])));
+}
+
+sr.Close();
+fs.Close();</code></pre>
+                    </div>
+                </div>
+
             </div>
         </div>
+
+
         
         <script>
             function copyCode(elementId) {
