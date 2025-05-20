@@ -57,6 +57,7 @@
                     <a href="#toWpfList">WPF listaBox vagy Táblázat feltöltése az osztály elemeivel</a>
                     <a href="#toCbox">CheckBox és RadioButton használata</a>
                     <a href="#toBarna">Absztrakt - (Kovács Barnának)</a>
+                    <a href="#toDatagrid">DataGridbe SQL tábla betöltés gombnyomásra</a>
                 </div>
             </div>
 
@@ -940,13 +941,58 @@ Barnának:
                     </div>
                 </div>
 
+
+                <button data-bs-toggle="collapse" data-bs-target="#datagrid" class="collapseBtn" id="toDatagrid">
+                    DataGridbe SQL tábla betöltés gombnyomásra
+                </button>
+
+
+                <div class="collapse mt-2 mb-5 pe-5" id="datagrid">
+<pre class="szovegek">
+Ha az első 2 sort(listát és conStr-t) is a public partial class Mainwindow : Window alá írod, akkor nem kell mindig létrehoznod újra és újra. 
+</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('datagridContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="datagridContent"><code class="language-html">List&lt;className&gt; lista = new List&lt;className&gt;();
+    string conStr = &quot;server=localhost;user=root;database=databaseName;port3306;password=;charset=utf8&quot;;
+                            
+MySqlConnection con = new MySqlConnection(connStr);
+
+try
+{
+    
+    con.Open();
+    string sql = &quot;SELECT * from tableName;&quot;;
+    MySqlCommand query = new MySqlCommand(sql, con);
+    MySqlDataReader reader = query.ExecuteReader();
+
+    while (reader.Read())
+    {
+        lista.Add(new className(Convert.ToInt32(reader[0]),
+            Convert.ToInt32(reader[1]),
+            Convert.ToInt32(reader[2]),
+            Convert.ToString(reader[3]),
+            Convert.ToString(reader[4]),
+            Convert.ToInt32(reader[5])));
+    }
+    reader.Close();
+}
+catch (Exception ex)
+{
+    MessageBox.Show(ex.Message, &quot;Hiba&quot;);
+}
+
+con.Close();
+dataGrid.ItemsSource = lista;
+                        </code></pre>
+                    </div>
+                </div>
+
                 </div>
             </div>
         </div>
-
-
-
-
         
         <script>
             function copyCode(elementId) {
