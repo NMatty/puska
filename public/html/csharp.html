@@ -56,6 +56,8 @@
                     <a href="#toDialogs">OpenFileDialog() és ShowDialog() használata</a>
                     <a href="#toBarna">Absztrakt - (Kovács Barnának)</a>
                     <a href="#toDatagrid">DataGridbe SQL tábla betöltés gombnyomásra</a>
+                    <a href="#toOopAlapok">OOP alapok</a>
+                    <a href="#toEgyedi">Egyedi elemek</a>
                 </div>
             </div>
 
@@ -1146,6 +1148,93 @@ catch (Exception ex)
 con.Close();
 dataGrid.ItemsSource = lista;
                         </code></pre>
+                    </div>
+                </div>
+                <button data-bs-toggle="collapse" data-bs-target="#oopalap" class="collapseBtn" id="toOopAlap">
+                    OOP alapok
+                </button>
+
+                <div class="collapse mt-2 mb-5 pe-5" id="oopalap">
+                        <pre class="szovegek">Alap konzolos C#-hoz.
+</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('oopalapContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="oopalapContent"><code class="language-html">
+public class autok
+    {
+        public string marka, rendszam;
+        public int kilometer;
+
+        public autok(string adottsor)
+        {
+            marka = adottsor.Split(' ')[0];
+            rendszam = adottsor.Split(' ')[1];
+            kilometer = Convert.ToInt32(adottsor.Split(' ')[2]);
+        }
+    }
+
+    internal class Program
+    {
+        List&lt;autok&gt;auto=new List&lt;autok&gt;();
+
+        public Program()
+        {
+            feladat1();
+        }
+
+        public void feladat1()
+        {
+            StreamReader be = new StreamReader(&quot;autok.txt&quot;);
+            do
+            {
+                auto.Add(new autok(be.ReadLine()));
+            }
+            while (!be.EndOfStream);
+            be.Close();
+            //for(int i = 0; i &lt; esemeny.Count; i++)
+            //{
+            //    Console.WriteLine(auto[i].marka+&quot; &quot; + auto[i].rendszam+&quot; &quot; + auto[i].kilometer);
+            //}
+        }
+
+        static void Main(string[] args)
+        {
+            Program p=new Program();
+            Console.ReadKey();
+            Console.WriteLine();
+        }
+    }               
+</code></pre>
+                    </div>
+                </div>
+
+                <button data-bs-toggle="collapse" data-bs-target="#egyedi" class="collapseBtn" id="toEgyedi">
+                    Egyedi elemek szűrése
+                </button>
+
+                <div class="collapse mt-2 mb-5 pe-5" id="egyedi">
+                        <pre class="szovegek">Minden különböző elemet kiszed és kiír a listából
+</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('egyediContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="egyediContent"><code class="language-html">
+List&lt;string&gt; lista = new List&lt;string&gt;();
+            foreach (var a in nagylista)
+            {
+                if (!lista.Contains(a.adat))
+                {
+                    lista.Add(a.adat);
+                }
+            }
+            foreach (var a in lista)
+            {
+                Console.Write(a + &quot; &quot;);
+            }           
+</code></pre>
                     </div>
                 </div>
 
