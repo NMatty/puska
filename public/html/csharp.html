@@ -56,7 +56,11 @@
                     <a href="#toGrid">WPF Grid</a>
                     <a href="#toWpfList">WPF listaBox vagy Táblázat feltöltése az osztály elemeivel</a>
                     <a href="#toCbox">CheckBox és RadioButton használata</a>
+<<<<<<< HEAD
                     <a href="#toDialogs">OpenFileDialog() és ShowDialog() használata</a>
+=======
+                    <a href="#toBarna">Absztrakt - (Kovács Barnának)</a>
+>>>>>>> 40300c2d1789c59874e897375a94f2c882a36aa4
                 </div>
             </div>
 
@@ -1037,6 +1041,67 @@ private void MentesGomb_Click(object sender, RoutedEventArgs e)
                 </div>
 
 
+
+                <button data-bs-toggle="collapse" data-bs-target="#barna" class="collapseBtn" id="toBarna">
+                    Absztrakt - (Kovács Barnának)
+                </button>
+
+
+                <div class="collapse mt-2 mb-5 pe-5" id="barna">
+<pre class="szovegek">
+Barnának:
+</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('barnaContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="barnaContent"><code class="language-html">//1. Feladat
+    //Absztrakt oszt&aacute;ly:
+    //-&gt; mindent tartalmazhat, amit egy norm&aacute;l oszt&aacute;ly (tagv&aacute;ltoz&oacute;, property, konstruktor,
+    //  tagf&uuml;ggv&eacute;ny, met&oacute;dus)
+    //-&gt; tartalmaz absztrakt tagf&uuml;ggv&eacute;nyt &eacute;s/vagy met&oacute;dus defin&iacute;ci&oacute;t (kifejt&eacute;s n&eacute;lk&uuml;l!!!):
+    //  kifejt&eacute;s&uuml;k a sz&aacute;rmaztatott (al) oszt&aacute;lyban t&ouml;rt&eacute;nik (nev&uuml;k mindenhol ugyanaz, csak a
+    //  funkci&oacute;juk m&aacute;s egy kicsit minden aloszt&aacute;lyban)
+    //-&gt; nem p&eacute;ld&aacute;nyos&iacute;that&oacute;
+    abstract class Auto
+    {
+        //tagv&aacute;ltoz&oacute;k
+        //protected: sz&aacute;rmaztatott (al) oszt&aacute;ly l&aacute;tja őket, főprogram nem l&aacute;tja őket
+        protected string rendszam, tipus;
+        protected int megtettut;
+        protected double fogyasztas;
+
+        //konstruktor: a konkr&eacute;t &eacute;rt&eacute;kek param&eacute;ter list&aacute;b&oacute;l j&ouml;nnek
+        //this: oszt&aacute;ly tagv&aacute;ltoz&oacute;k
+        protected Auto(string rendszam, string tipus, double fogyasztas, int megtettut)
+        {
+            this.rendszam = rendszam;
+            this.tipus = tipus;
+            this.fogyasztas = fogyasztas;
+            this.megtettut = megtettut;
+        }
+
+        //Publikus property defin&iacute;ci&oacute;k a tagv&aacute;ltoz&oacute;kb&oacute;l
+        //Oszt&aacute;lyon k&iacute;v&uuml;l (főprogramban) l&aacute;that&oacute; (olvashat&oacute;), de nem m&oacute;dos&iacute;that&oacute; (&iacute;rhat&oacute;)
+        public string Rendszam { get =&gt; rendszam; }
+        public string Tipus { get =&gt; tipus; }
+        public double Fogyasztas { get =&gt; fogyasztas; }
+        public int Megtettut { get =&gt; megtettut; }
+
+        //ToString(): be&eacute;p&iacute;tett C# tagf&uuml;ggv&eacute;ny
+        //override: fel&uuml;l&iacute;rjuk műk&ouml;d&eacute;s&eacute;ben
+        public override string ToString()
+        {
+            return $&quot;A(z) {rendszam} rendsz&aacute;m&uacute; aut&oacute; {tipus} t&iacute;pus&uacute;&quot;;
+        }
+
+        //absztrakt tagf&uuml;ggv&eacute;ny ill. met&oacute;dus defin&iacute;ci&oacute;k
+        public abstract void Szazalek(List&lt;int&gt; ertek);
+        public abstract double Atlag();
+    }
+                        </code></pre>
+                    </div>
+                </div>
 
                 </div>
             </div>
