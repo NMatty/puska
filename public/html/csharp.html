@@ -58,6 +58,7 @@
                     <a href="#toDatagrid">DataGridbe SQL tábla betöltés gombnyomásra</a>
                     <a href="#toOopAlapok">OOP alapok</a>
                     <a href="#toEgyedi">Egyedi elemek</a>
+                    <a href="#toDesc">Csökkenő sorrendbe rendezés</a>
                 </div>
             </div>
 
@@ -1234,6 +1235,33 @@ List&lt;string&gt; lista = new List&lt;string&gt;();
             {
                 Console.Write(a + &quot; &quot;);
             }           
+</code></pre>
+                    </div>
+                </div>
+
+
+                <button data-bs-toggle="collapse" data-bs-target="#desc" class="collapseBtn" id="toDesc">
+                    Csökkenő sorrendbe rendezés
+                </button>
+
+                <div class="collapse mt-2 mb-5 pe-5" id="desc">
+                        <pre class="szovegek">A listát csökkenő sorrendbe rendezi
+</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('descContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="descContent"><code class="language-html">for(int i = 0; i &lt; lista.Count-1; i++)
+{
+    for(int j = i + 1; j &lt; lista.Count; j++)
+        {
+            if (lista[i].Pontok &lt; lista[j].Pontok) {
+                var listaAllat = lista[i];
+                lista[i] = lista[j];
+                lista[j] = listaAllat;
+            }
+        }
+}          
 </code></pre>
                     </div>
                 </div>
