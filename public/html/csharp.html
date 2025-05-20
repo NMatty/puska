@@ -56,6 +56,7 @@
                     <a href="#toGrid">WPF Grid</a>
                     <a href="#toWpfList">WPF listaBox vagy Táblázat feltöltése az osztály elemeivel</a>
                     <a href="#toCbox">CheckBox és RadioButton használata</a>
+                    <a href="#toDialogs">OpenFileDialog() és ShowDialog() használata</a>
                     <a href="#toBarna">Absztrakt - (Kovács Barnának)</a>
                     <a href="#toDatagrid">DataGridbe SQL tábla betöltés gombnyomásra</a>
                 </div>
@@ -876,6 +877,167 @@ private void mentes(object sender, RoutedEventArgs e)
 }
                         </code></pre>
                     </div>
+                </div>
+
+
+
+                <button data-bs-toggle="collapse" data-bs-target="#dialogs" class="collapseBtn" id="toDialogs">
+                    OpenFileDialog() és ShowDialog() használata
+                </button>
+
+
+                <div class="collapse mt-2 mb-5 pe-5" id="dialogs">
+<pre class="szovegek">
+<b>OpenFileDialog()</b>
+- A segítségével a felhasználó egy felugró ablakban (megnyitás ablak) böngészhet a számítógépen található fájlok között és kiválaszthat egyet, amit a program használhat. (pl.: megnyithat vagy feldolgozhat)
+
+- Például egy gombra kattintáskor kiválasztunk egy txt fájlt.
+- Először létre kell hoznunk egy OpenFileDialog példányt, ez az objektum fogja kezelni a fájl kiválasztásához szükséges beállításokat és műveleteket.
+- Ezután be kell állítanunk a title és filter tulajdonságokat.
+	Title: Beállíthatod az ablak címét, hogy a felhasználó tudja, miért nyílik meg (pl.: Válassz egy fájlt)
+	Filter: Ezzel meghatározhatjuk, hogy mely fájltípusok jelenjenek meg. Ha csak szöveges fájlokat akarsz megjeleníteni, beállíthatod, hogy csak azokat lássa a felhasználó.
+
+OpenFileDialog open = new OpenFileDialog();
+open.Title = "Válasszon egy fájlt";
+open.Filter = "Szöveges  fájlok (*.txt)|*.txt;
+
+<b>Filter felépítése</b>
+A filter string párokból áll, ahol az első része a leírás (amit a felhasználó lát), a második pedig a tényleges fájlkiterjesztés mintája. A leírás és a kiterjesztés között a (pipe: altgr + w) karaktert használjuk. Több szűrőpárt egymástól is | jellel választunk el.
+
+„Szöveges fájlok (*.txt) | *.txt | Minden fájl | *.*”
+„Kép fájlok (*.jpg, *.png) | *.jpg; *.png”
+
+<b>Megnyitás ellenőrzése</b>
+if(open.ShowDialog() == true)
+{
+	string utvonal = open.FileName;
+	// Fájl beolvasása, vagy amit szeretnénk vele
+}
+else
+{
+	// Mi történjen, ha a Mégse gombra nyomott a felhasználó
+}
+
+A <b>ShowDialog()</b> metódus megnyitja a fájlkiválasztó ablakot és visszad egy bool értéket.
+-	Ha true, a felhasználó a “Megnyitás” gombra kattintott és kiválasztott egy fájlt.
+-	Ha false, a felhasználó a “Mégse” gombra kattintott vagy bezárta az ablakot.
+
+A segítségével a felhasználó egy felugró ablakban (mentés másként ablak) menthet el egy fájlt. A felhasználó kiválaszthatja egy fájl nevét és a helyét, majd az alkalmazás az adott helyre menti az adatokat.
+Először létre kell hoznunk belőle egy példányt.
+-	Title
+-	Filter
+SaveFileDialog save = new SaveFileDialog();</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('dialogsContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="dialogsContent"><code class="language-html">// xaml.cs:
+                            
+private void BetoltesGomb_Click(object sender, RoutedEventArgs e)
+{
+    // 1. L&eacute;trehozzuk a f&aacute;jlv&aacute;laszt&oacute; ablakot
+    OpenFileDialog fajlValaszto = new OpenFileDialog();
+    
+    // 2. Be&aacute;ll&iacute;tjuk az ablak tulajdons&aacute;gait
+    fajlValaszto.Title = &quot;V&aacute;lassz egy sz&ouml;veges f&aacute;jlt&quot;; // Az ablak c&iacute;me
+    fajlValaszto.Filter = &quot;Sz&ouml;veges f&aacute;jlok (*.txt)|*.txt|Minden f&aacute;jl (*.*)|*.*&quot;;
+    /*
+     * Filter fel&eacute;p&iacute;t&eacute;se:
+     * &quot;Le&iacute;r&aacute;s|filt1;filt2|Le&iacute;r&aacute;s2|filt3&quot;
+     * P&eacute;ld&aacute;k:
+     * &quot;K&eacute;pek (*.jpg, *.png)|*.jpg;*.png&quot;
+     * &quot;Excel f&aacute;jlok (*.xlsx)|*.xlsx|CSV f&aacute;jlok (*.csv)|*.csv&quot;
+     */
+
+    // 3. Megnyitjuk a dial&oacute;gusablakot &eacute;s ellenőrizz&uuml;k az eredm&eacute;nyt
+    if (fajlValaszto.ShowDialog() == true)
+    {
+        // Ha a felhaszn&aacute;l&oacute; kiv&aacute;lasztott egy f&aacute;jlt &eacute;s OK-ra kattintott
+        string kivalasztottFajl = fajlValaszto.FileName;
+        
+        try
+        {
+            // F&aacute;jl tartalm&aacute;nak beolvas&aacute;sa
+            string tartalom = File.ReadAllText(kivalasztottFajl);
+            FajlTartalmaTextBox.Text = tartalom;
+            MessageBox.Show(&quot;F&aacute;jl sikeresen bet&ouml;ltve!&quot;, &quot;Siker&quot;, MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($&quot;Hiba t&ouml;rt&eacute;nt a f&aacute;jl bet&ouml;lt&eacute;sekor: {ex.Message}&quot;, &quot;Hiba&quot;, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+    else
+    {
+        // Ha a felhaszn&aacute;l&oacute; m&eacute;gsem v&aacute;lasztott f&aacute;jlt vagy bez&aacute;rta az ablakot
+        MessageBox.Show(&quot;Nem v&aacute;lasztott&aacute;l ki f&aacute;jlt.&quot;, &quot;Inform&aacute;ci&oacute;&quot;, MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+}
+
+private void MentesGomb_Click(object sender, RoutedEventArgs e)
+{
+    // 1. L&eacute;trehozzuk a ment&eacute;s ablakot
+    SaveFileDialog mentesAblak = new SaveFileDialog();
+    
+    // 2. Be&aacute;ll&iacute;tjuk az ablak tulajdons&aacute;gait
+    mentesAblak.Title = &quot;F&aacute;jl ment&eacute;se m&aacute;sk&eacute;nt&quot;;
+    mentesAblak.Filter = &quot;Sz&ouml;veges f&aacute;jlok (*.txt)|*.txt|Minden f&aacute;jl (*.*)|*.*&quot;;
+    mentesAblak.DefaultExt = &quot;.txt&quot;; // Alap&eacute;rtelmezett kiterjeszt&eacute;s
+    mentesAblak.AddExtension = true; // Automatikusan hozz&aacute;adja a kiterjeszt&eacute;st ha a felhaszn&aacute;l&oacute; nem &iacute;rta be
+
+    // 3. Megnyitjuk a dial&oacute;gusablakot
+    if (mentesAblak.ShowDialog() == true)
+    {
+        string celFajl = mentesAblak.FileName;
+        
+        try
+        {
+            // Sz&ouml;veg ment&eacute;se a kiv&aacute;lasztott f&aacute;jlba
+            File.WriteAllText(celFajl, FajlTartalmaTextBox.Text);
+            MessageBox.Show(&quot;F&aacute;jl sikeresen elmentve!&quot;, &quot;Siker&quot;, MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($&quot;Hiba t&ouml;rt&eacute;nt a f&aacute;jl ment&eacute;sekor: {ex.Message}&quot;, &quot;Hiba&quot;, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+}</code></pre>
+
+                    </div>
+
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('dialogsContent2')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="dialogsContent2"><code class="language-html">&lt;!-- XAML: --&gt;
+
+&lt;Grid Margin=&quot;10&quot;&gt;
+    &lt;Grid.RowDefinitions&gt;
+        &lt;RowDefinition Height=&quot;Auto&quot;/&gt;
+        &lt;RowDefinition Height=&quot;*&quot;/&gt;
+        &lt;RowDefinition Height=&quot;Auto&quot;/&gt;
+    &lt;/Grid.RowDefinitions&gt;
+    
+    &lt;!-- Gombok --&gt;
+    &lt;StackPanel Orientation=&quot;Horizontal&quot; HorizontalAlignment=&quot;Center&quot; Grid.Row=&quot;0&quot;&gt;
+        &lt;Button x:Name=&quot;BetoltesGomb&quot; Content=&quot;F&aacute;jl bet&ouml;lt&eacute;se&quot; Margin=&quot;5&quot; Padding=&quot;10,5&quot; Click=&quot;BetoltesGomb_Click&quot;/&gt;
+        &lt;Button x:Name=&quot;MentesGomb&quot; Content=&quot;F&aacute;jl ment&eacute;se&quot; Margin=&quot;5&quot; Padding=&quot;10,5&quot; Click=&quot;MentesGomb_Click&quot;/&gt;
+    &lt;/StackPanel&gt;
+    
+    &lt;!-- Sz&ouml;vegdoboz a f&aacute;jl tartalm&aacute;nak megjelen&iacute;t&eacute;s&eacute;hez --&gt;
+    &lt;TextBox x:Name=&quot;FajlTartalmaTextBox&quot; Grid.Row=&quot;1&quot; Margin=&quot;5&quot; 
+             TextWrapping=&quot;Wrap&quot; AcceptsReturn=&quot;True&quot; VerticalScrollBarVisibility=&quot;Auto&quot;/&gt;
+    
+    &lt;!-- &Aacute;llapotsor --&gt;
+    &lt;StatusBar Grid.Row=&quot;2&quot;&gt;
+        &lt;StatusBarItem&gt;
+            &lt;TextBlock&gt;K&eacute;sz&lt;/TextBlock&gt;
+        &lt;/StatusBarItem&gt;
+    &lt;/StatusBar&gt;
+&lt;/Grid&gt;</code></pre>
+
+                    </div>
+
                 </div>
 
 
