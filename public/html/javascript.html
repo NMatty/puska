@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JavaScript</title>
+        <title>Legális puska - bootstrap</title>
         <!--Bootstrap-->
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="../css/all.css">
@@ -29,7 +29,10 @@
                             <a class="nav-link" href="../html/csharp.html">C#</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../html/sql-seged.html">SQL</a>
+                            <a class="nav-link" href="../html/sql.html">SQL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../html/boot-alpari.html">Alpári oldal</a>
                         </li>
                     </ul>
                 </div>
@@ -41,16 +44,13 @@
                 <div class="vertical-scroll-nav mx-auto">
                     <a href="#toModule">Module</a>
                     <a href="#toPost">Post fetch/fetch, promise</a>
-                    <a href="#toPostjsonfetch">Post Fetch (JSON)</a>
-                    <a href="#toPostformdata">Post Fetch (FormData)</a>
-                    <a href="#toGetjsonfetch">Get Fetch (JSON)</a>
-                    <a href="#toAppgetdata">app.get adatbázis adat</a>
-                    <a href="#toAppgetdatabyid">app.get adatbázis adat (id)</a>
-                    <a href="#toApppostjson">app.post adatbázis json adat</a>
-                    <a href="#toApppostformdata">app.post adatbázis formdata adat</a>
-                    <a href="#toDatabasebyid">Adatbázis keresés id alapján</a>
-                    <a href="#toDatabaseinsert">Adatbázisba feltöltés</a>
-                    <a href="#toDatabaseupdate">Adatbázis adatok frissítése</a>
+                    <a href="#toTabla">Táblagenerálás</a>
+                    <a href="#toSelect">Select</a>
+                    <a href="#toInsert">Insert</a>
+                    <a href="#toDelete">Delete</a>
+                    <a href="#toUpdate">Update</a>
+                    <a href="#toUpdate">Checkbex</a>
+                    <a href="#toCella">Cella feltöltése</a>
                 </div>
             </div>
 
@@ -223,293 +223,325 @@ postMethodFetch(url, postObject)
                     </div>
                 </div>
 
-                <button data-bs-toggle="collapse" data-bs-target="#postjsonfetch" class="collapseBtn" id="toPostjsonfetch">
-                    Post Fetch (JSON)
+
+                <button data-bs-toggle="collapse" data-bs-target="#tabla" class="collapseBtn" id="toTabla">
+                    Táblagenerál
                 </button>
 
-
-                <div class="collapse mt-2 mb-5 pe-5" id="postjsonfetch">
+                <div class="collapse mt-2 mb-5 pe-5" id="tabla">
+                        <pre class="szovegek">
+Táblagenerálás + meghívás Kárpáti szerint.</pre>
                     <div class="card card-body position-relative">
-                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('postjsonfetchContent')">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('tablaContent')">
                             Másolás
                         </button>
-                        <pre class="bg-light p-3 rounded" id="postjsonfetchContent"><code class="language-html">const postJsonFetch = (url, data) =&gt; {
+                        <pre class="bg-light p-3 rounded" id="TablaContent"><code class="language-html">
+function pTableWrite(data){
+    const hova=document.getElementById(&quot;projektBody&quot;);
+    hova.innerHTML=null;
+    for(let i=0;i &lt; data.length;i++)
+    {
+        let sor = document.createElement(&quot;tr&quot;);
+        sor.dataset=data[i].id;
+        let name = document.createElement(&quot;td&quot;);
+        name.innerHTML = data[i].name;
+        let description = document.createElement(&quot;td&quot;);
+        description.innerHTML = data[i].description;
+        sor.appendChild(name);
+        sor.appendChild(description);
+        hova.appendChild(sor);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async function () {
+    pTableWrite(await selectProjekt());
+    document.getElementById(&quot;newProjekt&quot;).addEventListener(&quot;click&quot;, async function () {
+        if ((await NewProjekt()).affectedRows &gt; 0) {
+            pTableWrite(await selectProjekt());
+        }
+    });
+    document.getElementById('deleteFormFeladat').addEventListener('click', resetFeladatForm);
+});                  
+</code></pre>
+                    </div>
+                </div>
+
+                               <button data-bs-toggle="collapse" data-bs-target="#select" class="collapseBtn" id="toSelect">
+                    Select (Kárpáti)
+                </button>
+
+                <div class="collapse mt-2 mb-5 pe-5" id="select">
+                        <pre class="szovegek">
+Select részei</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('selectContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="selectContent"><code class="language-html">
+Backend (db-queries.js)
+function selectAll() {
     return new Promise((resolve, reject) =&gt; {
-        fetch(url,
-            {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then((response) =&gt; {
-                if (!response.ok) {
-                    reject('Hiba: ' + response.status);
-                }
-                return response.json();
-            })
-            .then((data) =&gt; {
-                resolve(data)
-            })
-            .catch((error) =&gt; {
-                reject('Hiba: ' + error);
-            });
-    })
-}</code></pre>
-                    </div>
-                </div>
-
-                <button data-bs-toggle="collapse" data-bs-target="#postformdata" class="collapseBtn" id="toPostformdata">
-                    Post Fetch (FormData)
-                </button>
-
-
-                <div class="collapse mt-2 mb-5 pe-5" id="postformdata">
-                    <div class="card card-body position-relative">
-                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('postformdataContent')">
-                            Másolás
-                        </button>
-                        <pre class="bg-light p-3 rounded" id="postformdataContent"><code class="language-html">const postFormDataFetch = (url, formData) => {
-    return new Promise((resolve, reject) => {
-        fetch(url,
-            {
-                method: 'POST',
-                body: formData
-            })
-            .then((response) => {
-                if (!response.ok) {
-                    reject('Hiba: ' + response.status);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                resolve(data)
-            })
-            .catch((error) => {
-                reject('Hiba: ' + error);
-            });
-    })
-}</code></pre>
-                    </div>
-                </div>
-
-
-                <button data-bs-toggle="collapse" data-bs-target="#getjsonfetch" class="collapseBtn" id="toGetjsonfetch">
-                    Get Fetch (JSON)
-                </button>
-
-
-                <div class="collapse mt-2 mb-5 pe-5" id="getjsonfetch">
-                    <div class="card card-body position-relative">
-                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('getjsonfetchContent')">
-                            Másolás
-                        </button>
-                        <pre class="bg-light p-3 rounded" id="getjsonfetchContent"><code class="language-html">const getFetch = (url) => {
-    return new Promise((resolve, reject) => {
-        fetch(url)
-            .then((response) => {
-                if (!response.ok) {
-                    reject(`Hiba: ${response.status}`)
-                }
-                return response.json();
-            })
-            .then((data) => {
-                resolve(data)
-            })
-            .catch((error) => {
-                reject(`Hiba: ${error}`)
-            });
-    })
-}</code></pre>
-                    </div>
-                </div>
-
-                <button data-bs-toggle="collapse" data-bs-target="#appgetdata" class="collapseBtn" id="toAppgetdata">
-                    Backend => adatbázis adat lekérése és visszaadása JSON-ként (app.get)
-                </button>
-
-
-                <div class="collapse mt-2 mb-5 pe-5" id="appgetdata">
-                    <div class="card card-body position-relative">
-                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('appgetdataContent')">
-                            Másolás
-                        </button>
-                        <pre class="bg-light p-3 rounded" id="appgetdataContent"><code class="language-html">app.get('/api/getDatabaseDatas', async (request, response) => 
-{
-    try
-    {
-        const datas = await db.getDatasFromDatabase()
-        res.status(200).json({ datas });
-    }
-    catch(err)
-    {
-        console.log("Error: " + err)
-        res.status(500).json({ error: err });
-    }
-});</code></pre>
-                    </div>
-                </div>
-
-                <button data-bs-toggle="collapse" data-bs-target="#appgetdatabyid" class="collapseBtn" id="toAppgetdatabyid">
-                    Backend => adatbázis adat lekérése id alapján (app.get)
-                </button>
-
-
-                <div class="collapse mt-2 mb-5 pe-5" id="appgetdatabyid">
-                    <div class="card card-body position-relative">
-                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('appgetdatabyidContent')">
-                            Másolás
-                        </button>
-                        <pre class="bg-light p-3 rounded" id="appgetdatabyidContent"><code class="language-html">app.get('/api/getDatasById/:id', async (request, response) =>
-{
-    try
-    {
-        const id = request.params.id;
-    
-        const datas = await db.getDatasById(id);
-
-        res.status(200).json({ datas });
-    }
-    catch(err)
-    {
-        console.log("Error: " + err)
-        res.status(500).json({ error: err });
-    }
-})</code></pre>
-                    </div>
-                </div>
-
-                <button data-bs-toggle="collapse" data-bs-target="#apppostjson" class="collapseBtn" id="toApppostjson">
-                    Backend => adatbázis JSON adat feltöltése (app.post)
-                </button>
-
-
-                <div class="collapse mt-2 mb-5 pe-5" id="apppostjson">
-                    <div class="card card-body position-relative">
-                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('apppostjsonContent')">
-                            Másolás
-                        </button>
-                        <pre class="bg-light p-3 rounded" id="apppostjsonContent"><code class="language-html">app.post('/api/postJsonDatas/', async (request, response) =>
-{
-    try
-    {
-        const datas = request.body;
-    
-        await db.insertDatas(datas.jsondata1, datas.jsondata2, datas.jsondata3);
-
-        response.json({message: "siker!"})
-    }
-    catch(err)
-    {
-        console.log("Error: " + err)
-        response.json({error: err});
-    }
-})</code></pre>
-                    </div>
-                </div>
-
-                <button data-bs-toggle="collapse" data-bs-target="#apppostformdata" class="collapseBtn" id="toApppostformdata">
-                    Backend => adatbázis FormData adat feltöltése (app.post)
-                </button>
-
-
-                <div class="collapse mt-2 mb-5 pe-5" id="apppostformdata">
-                    <div class="card card-body position-relative">
-                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('apppostformdataContent')">
-                            Másolás
-                        </button>
-                        <pre class="bg-light p-3 rounded" id="apppostformdataContent"><code class="language-html">app.post('/api/insertFormdata/', upload.single('file'), async (request, response) =>
-{
-    try
-    {
-        const formData = request.body;
-    
-        await db.insertNagydij(formData.formdata1, formData.formdata2, formData.formdata3);
-
-        response.json({message: "siker!"})
-    }
-    catch(err)
-    {
-        console.log("Error: " + err)
-        response.json({error: err});
-    }
-})</code></pre>
-                    </div>
-                </div>
-
-                <button data-bs-toggle="collapse" data-bs-target="#databasebyid" class="collapseBtn" id="toDatabasbyid">
-                    Backend-Adatbázis => adatbázis keresés id alapján
-                </button>
-
-
-                <div class="collapse mt-2 mb-5 pe-5" id="databasebyid">
-                    <div class="card card-body position-relative">
-                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('databasebyidContent')">
-                            Másolás
-                        </button>
-                        <pre class="bg-light p-3 rounded" id="databasebyidContent"><code class="language-html">function getDatasById(id) 
-{
-    return new Promise((resolve, reject) => 
-    {
-        pool.query('SELECT * FROM tabla_nev WHERE id = ?;', [id], (err, result, fields) => 
-        {
+        pool.query('SELECT * FROM tabla;', (err, result, fields) =&gt; {
             if (err) return reject(err);
             resolve(result);
         });
     });
-}</code></pre>
+}
+module.exports = {
+    selectAll
+};
+
+Backend (app.js)
+app.get('/api/selectall', (request, response) =&gt; {
+    db.selectAll()
+        .then((data) =&gt; {
+            response.json(data);
+        })
+        .catch((err) =&gt; {
+            console.error('Error:', err);
+        });
+});
+
+Frontend (script)
+async function SelectAll() {
+    let response = fetch(&quot;/api/selectall&quot;, {
+        method: &quot;GET&quot;
+    });
+    return (await response).json();
+}              
+</code></pre>
                     </div>
                 </div>
-
-                <button data-bs-toggle="collapse" data-bs-target="#databaseinsert" class="collapseBtn" id="toDatabaseinsert">
-                    Backend-Adatbázis => adatbázisba feltöltés
+                <button data-bs-toggle="collapse" data-bs-target="#insert" class="collapseBtn" id="toInsert">
+                    Insert (Kárpáti)
                 </button>
 
-
-                <div class="collapse mt-2 mb-5 pe-5" id="databaseinsert">
+                <div class="collapse mt-2 mb-5 pe-5" id="insert">
+                        <pre class="szovegek">
+Insert részei</pre>
                     <div class="card card-body position-relative">
-                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('databaseinsertContent')">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('insertContent')">
                             Másolás
                         </button>
-                        <pre class="bg-light p-3 rounded" id="databaseinsertContent"><code class="language-html">function insertDatas(data1, data2, data3) 
-{
-    return new Promise((resolve, reject) => 
-    {
-        pool.query('INSERT INTO tabla_nev (tabla_oszlop1, tabla_oszlop2, tabla_oszlop3) VALUES (?, ?, ?);', [data1, data2, data3], (err, result, fields) => 
-        {
+                        <pre class="bg-light p-3 rounded" id="insertContent"><code class="language-html">
+Backend (db-queries.js)
+function insert(tomb) {
+    return new Promise((resolve, reject) =&gt; {
+        pool.query('INSERT INTO tabla (adat) VALUES (?);', [tomb], (err, result) =&gt; {
             if (err) return reject(err);
             resolve(result);
         });
     });
-}</code></pre>
+}
+module.exports = {
+    insert
+};
+
+Backend (app.js)
+app.post('/api/insert',upload.single('file') , (request, response) =&gt; {
+    let tomb = [];
+    tomb.push(request.body.adat);
+    db.insert(tomb)
+        .then((data) =&gt; {
+            response.json(data);
+        })
+        .catch((err) =&gt; {
+            console.error('Error:', err);
+        });
+});
+
+Frontend (script)
+async function Insert() {
+    let formData = new FormData(document.getElementById(&quot;formid&quot;));
+    let response = fetch(&quot;/api/insert&quot;, {
+        method: &quot;POST&quot;,
+        body: formData
+    })
+    return (await response).json();
+}         
+</code></pre>
                     </div>
                 </div>
 
-                <button data-bs-toggle="collapse" data-bs-target="#databaseupdate" class="collapseBtn" id="toDatabaseupdate">
-                    Backend-Adatbázis => adatbázis adatok frissítése (UPDATE) id alapján
+                <button data-bs-toggle="collapse" data-bs-target="#delete" class="collapseBtn" id="todelete">
+                    Delete (Kárpáti)
                 </button>
 
-
-                <div class="collapse mt-2 mb-5 pe-5" id="databaseupdate">
+                <div class="collapse mt-2 mb-5 pe-5" id="delete">
+                        <pre class="szovegek">
+Delete részei</pre>
                     <div class="card card-body position-relative">
-                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('databaseupdateContent')">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('deleteContent')">
                             Másolás
                         </button>
-                        <pre class="bg-light p-3 rounded" id="databaseupdateContent"><code class="language-html">function updateData(id, newData1, newData2, newData3) {
-    return new Promise((resolve, reject) => {
-        pool.query(
-            'UPDATE tabla_nev SET tabla_oszlop1 = ?, tabla_oszlop2 = ?, tabla_oszlop3 = ? WHERE id = ?;',
-            [newData1, newData2, newData3, id],
-            (err, result, fields) => {
+                        <pre class="bg-light p-3 rounded" id="deleteContent"><code class="language-html">
+Backend (db-queries.js)
+function delete(tomb) {
+    return new Promise((resolve, reject) =&gt; {
+        pool.query('DELETE FROM tabla WHERE id = ?;',tomb,(err, result) =&gt; {
                 if (err) return reject(err);
                 resolve(result);
             }
         );
     });
-}</code></pre>
+}
+
+module.exports = {
+    delete
+};
+
+Backend (app.js)
+app.post('/api/delete',upload.single('file') , (request, response) =&gt; {
+    let tomb = [];
+    tomb.push(request.body.id);
+    db.deleteAuto(tomb)
+        .then((data) =&gt; {
+            response.json(data);
+        })
+        .catch((err) =&gt; {
+            console.error('Error:', err);
+        });
+});
+
+Frontend (script)
+async function Delete(formData) {
+    let response = fetch(&quot;/api/delete&quot;, {
+        method: &quot;POST&quot;,
+        body: formData
+    })
+    return (await response).json();
+}
+
+async function Delete(id) {
+    const response = await fetch(&quot;/api/delete&quot;, {
+        method: &quot;POST&quot;,
+        headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
+        body: JSON.stringify({ id })
+    });
+    return await response.json();
+}
+</code></pre>
                     </div>
                 </div>
+
+
+               
+
+                <button data-bs-toggle="collapse" data-bs-target="#update" class="collapseBtn" id="toUpdate">
+                    Update (Kárpáti)
+                </button>
+
+                <div class="collapse mt-2 mb-5 pe-5" id="update">
+                        <pre class="szovegek">
+Update részei</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('updateContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="updateContent"><code class="language-html">
+Backend (db-queries.js)
+function update(tomb) {
+    return new Promise((resolve, reject) =&gt; {
+        pool.query('UPDATE tabla SET adat=1 WHERE id=?;', tomb, (err, result) =&gt; {
+            if (err) return reject(err);
+            resolve(result);
+        });
+    });
+}
+
+module.exports = {
+    update
+};
+
+Backend (app.js)
+app.post('/api/update',upload.single('file') , (request, response) =&gt; {
+    let tomb = [];
+    tomb.push(request.body.id);
+    db.update(tomb)
+        .then((data) =&gt; {
+            response.json(data);
+        })
+        .catch((err) =&gt; {
+            console.error('Error:', err);
+        });
+});
+
+Frontend (script)
+async function update(formData) {
+    let response = fetch(&quot;/api/update&quot;, {
+        method: &quot;POST&quot;,
+        body: formData
+    })
+    return (await response).json();
+}
+</code></pre>
+                    </div>
+                </div>
+
+                <button data-bs-toggle="collapse" data-bs-target="#check" class="collapseBtn" id="toCheck">
+                    Checkbox (Kárpáti)
+                </button>
+
+                <div class="collapse mt-2 mb-5 pe-5" id="check">
+                        <pre class="szovegek">
+Táblázatba minden checkbox bejelölése és meghívása</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('checkContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="checkContent"><code class="language-html">
+function checkAll(tbody) {
+    let tabla = tbody.parentElement;
+    let cbAll = tabla.children[0].children[0].children[0].children[0].checked;
+    for (let i = 0; i &lt; tbody.children.length; i++) {
+        tbody.children[i].children[0].children[0].checked = cbAll;
+    }
+}
+
+document.getElementById(&quot;checkboxid&quot;).addEventListener(&quot;change&quot;, function () {
+        checkAll(document.getElementById(&quot;tbodyid&quot;))
+    })
+</code></pre>
+                    </div>
+                </div>
+
+
+                                <button data-bs-toggle="collapse" data-bs-target="#cella" class="collapseBtn" id="toCella">
+                    Cellafeltöltés
+                </button>
+
+                <div class="collapse mt-2 mb-5 pe-5" id="cella">
+                        <pre class="szovegek">
+</pre>
+                    <div class="card card-body position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2 copy-btn" onclick="copyCode('cellaContent')">
+                            Másolás
+                        </button>
+                        <pre class="bg-light p-3 rounded" id="cellaContent"><code class="language-html">
+const selectVarosBtn = () =&gt; {
+    const tbody = document.getElementById('varosBody');
+    let i = 0;
+    while (i &lt; tbody.children.length &amp;&amp; tbody.children[i].dataset.selected !== 'true') {
+        i++;
+    }
+    if (i &lt; tbody.children.length) {
+        const selected = tbody.children[i];
+        const cells = selected.children;
+        const form = document.getElementById('varosForm');
+
+        document.getElementById('vnev').value = cells[0].textContent;
+        document.getElementById('jaras').value = cells[1].textContent;
+        document.getElementById('kisterseg').value = cells[2].textContent;
+        document.getElementById('nepesseg').value = cells[3].textContent;
+        document.getElementById('terulet').value = cells[4].textContent;
+
+        form.dataset.selectedid = selected.dataset.id;
+    }
+};
+</code></pre>
+                    </div>
+                </div>
+
 
 
 
@@ -517,6 +549,7 @@ postMethodFetch(url, postObject)
                 
             </div>
         </div>
+
         
         <script>
             function copyCode(elementId) {
